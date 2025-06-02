@@ -1,0 +1,237 @@
+.certificate-generator-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.certificate-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.download-button,
+.close-button {
+    padding: 12px 24px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.download-button {
+    background-color: #4361ee;
+    color: white;
+}
+
+.download-button:hover {
+    background-color: #3a56d4;
+}
+
+.download-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.close-button {
+    background-color: #f5f5f5;
+    color: #333;
+    border: 1px solid #ddd;
+}
+
+.close-button:hover {
+    background-color: #e5e5e5;
+}
+
+.error-message {
+    color: #dc3545;
+    margin-top: 10px;
+    text-align: center;
+    width: 100%;
+}
+
+.certificate-preview-container {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Styles du certificat */
+.certificate-container {
+    width: 1050px;
+    height: 740px;
+    margin: 0 auto;
+    padding: 40px;
+    box-sizing: border-box;
+    position: relative;
+    border: 20px solid #4361ee;
+    background-color: #ffffff;
+}
+
+.certificate-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.logo1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.logo1-icon1 {
+    background-color: #4361ee;
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.logo1-text1 {
+    color: #4361ee;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.certificate-title {
+    font-size: 48px;
+    font-weight: bold;
+    color: #4361ee;
+    margin: 20px 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.certificate-subtitle {
+    font-size: 24px;
+    margin-bottom: 40px;
+}
+
+.student-name {
+    font-size: 36px;
+    font-weight: bold;
+    margin: 30px 0;
+    color: #333333;
+    text-align: center;
+}
+
+.certificate-text {
+    font-size: 20px;
+    line-height: 1.6;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.course-name {
+    font-size: 28px;
+    font-weight: bold;
+    margin: 20px 0;
+    color: #4361ee;
+    text-align: center;
+}
+
+.certificate-footer {
+    margin-top: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.date-section {
+    text-align: left;
+    flex: 1;
+}
+
+.signature-section {
+    text-align: right;
+    flex: 1;
+}
+
+.signature-line {
+    width: 200px;
+    height: 1px;
+    background-color: #333333;
+    margin: 10px 0 5px auto;
+}
+
+.certificate-date,
+.teacher-name {
+    font-size: 18px;
+}
+
+.certificate-id {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    font-size: 12px;
+    color: #999999;
+}
+
+.watermark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    font-size: 100px;
+    color: rgba(67, 97, 238, 0.05);
+    z-index: -1;
+    white-space: nowrap;
+}
+
+/* Modal pour le certificat */
+.certificate-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.certificate-modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 1200px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+}
+
+/* Responsive */
+@media (max-width: 1100px) {
+    .certificate-preview-container {
+        transform: scale(0.8);
+        transform-origin: top center;
+    }
+}
+
+@media (max-width: 768px) {
+    .certificate-preview-container {
+        transform: scale(0.6);
+    }
+}

@@ -1,0 +1,310 @@
+/* courseForm.css */
+.form-container {
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 40px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    font-family: 'Inter', sans-serif;
+    box-sizing: border-box;
+}
+
+h1 {
+    text-align: center;
+    color: #1a1a1a;
+    margin-bottom: 5px;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 30px;
+    font-size: 16px;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.form-group {
+    flex: 1;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+    background-color: #fff;
+    box-sizing: border-box;
+    appearance: none;
+    /* Remove default arrow in modern browsers */
+}
+
+.form-control:focus {
+    border-color: #4a90e2;
+    outline: none;
+}
+
+textarea.form-control {
+    resize: vertical;
+    min-height: 120px;
+    font-family: 'Inter', sans-serif;
+    line-height: 1.5;
+}
+
+/* Improved select dropdown styling */
+select.form-control {
+    padding-right: 30px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 12px;
+    cursor: pointer;
+}
+
+/* Remove default arrow in IE */
+select.form-control::-ms-expand {
+    display: none;
+}
+
+.file-upload {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.file-label {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #f0f0f0;
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 14px;
+}
+
+.file-label:hover {
+    background-color: #e0e0e0;
+}
+
+.file-input {
+    display: none;
+}
+
+.file-name {
+    margin-left: 15px;
+    color: #666;
+    font-size: 14px;
+}
+
+.form-actions {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.update-btn {
+    padding: 12px 30px;
+    background-color: #4361ee;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-weight: 500;
+}
+
+.update-btn:hover {
+    background-color: #3a56d4;
+}
+
+.update-btn:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+/* Style pour la page de confirmation après création du cours */
+.course-success-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.course-success-title {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.course-success-message {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.course-success-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.course-btn {
+    padding: 12px 25px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 500;
+}
+
+.edit-course-btn {
+    background-color: #f0f0f0;
+    color: #333;
+    border: 1px solid #ddd;
+}
+
+.edit-course-btn:hover {
+    background-color: #e0e0e0;
+}
+
+.add-lessons-btn {
+    background-color: #4361ee;
+    color: white;
+    border: none;
+}
+
+.add-lessons-btn:hover {
+    background-color: #3a56d4;
+}
+
+/* Ajustement pour mettre la catégorie et sous-catégorie côte à côte */
+.categories-container {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.categories-container .form-group {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+/* Image preview styling */
+.image-preview {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.image-preview img {
+    max-width: 100%;
+    max-height: 200px;
+    border-radius: 4px;
+    border: 1px solid #eee;
+}
+
+/* Additional actions styling */
+.additional-actions {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.modify-chapters-btn {
+    padding: 10px 20px;
+    background-color: #f0f0f0;
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.modify-chapters-btn:hover {
+    background-color: #e0e0e0;
+}
+
+/* Error and success messages */
+.error-message {
+    color: #dc3545;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    padding: 10px 15px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.success-message {
+    color: #28a745;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    padding: 10px 15px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+/* Dropdown styles */
+.dropdown-container {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: inherit;
+    color: inherit;
+    padding: 0;
+    margin: 0;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    min-width: 200px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    border-radius: 4px;
+    padding: 0.5rem 0;
+    list-style: none;
+}
+
+.dropdown-item {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: #333;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.dropdown-item:hover {
+    background-color: #f5f5f5;
+}
+
+.dropdown-item.active {
+    background-color: #e9ecef;
+    color: #495057;
+}

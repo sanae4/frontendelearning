@@ -1,0 +1,944 @@
+/* LessonForm.css - Version professionnelle et douce */
+
+/* Variables CSS pour une cohérence visuelle */
+:root {
+    --primary-color: #4361ee;
+    --primary-light: #eef2ff;
+    --primary-dark: #3a56d4;
+    --secondary-color: #4cc9f0;
+    --success-color: #4ade80;
+    --success-light: #ecfdf5;
+    --warning-color: #fb923c;
+    --danger-color: #f87171;
+    --danger-light: #fee2e2;
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --text-muted: #94a3b8;
+    --bg-main: #f8fafc;
+    --bg-card: #ffffff;
+    --bg-hover: #f1f5f9;
+    --border-color: #e2e8f0;
+    --border-focus: #cbd5e1;
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --transition-fast: 0.15s ease;
+    --transition-normal: 0.25s ease;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Base Styles */
+.lesson-page-container {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    font-family: var(--font-sans);
+    gap: 24px;
+    padding: 28px;
+    box-sizing: border-box;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+}
+
+/* Sidebar Styles - Plus doux et professionnel */
+.lesson-form-sidebar {
+    flex: 0 0 45%;
+    max-width: 500px;
+    background-color: var(--bg-card);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    transition: all var(--transition-normal);
+    border: 1px solid var(--border-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.lesson-form-sidebar:hover {
+    box-shadow: var(--shadow-lg);
+}
+
+/* Effet subtil d'accentuation pour la sidebar */
+.lesson-form-sidebar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background-color: var(--primary-color);
+    opacity: 0.7;
+}
+
+/* Lessons List Container - Plus spacieux */
+.lessons-list-container {
+    flex: 1;
+    background-color: var(--bg-card);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    padding: 30px;
+    overflow: auto;
+    border: 1px solid var(--border-color);
+}
+
+.lessons-list-container:hover {
+    box-shadow: var(--shadow-lg);
+}
+
+/* Titles - Plus élégants */
+.lesson-form-title,
+.lessons-list-title {
+    color: var(--primary-color);
+    margin-bottom: 25px;
+    font-size: 22px;
+    font-weight: 600;
+    text-align: center;
+    letter-spacing: 0.3px;
+    transition: color var(--transition-normal);
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border-color);
+    position: relative;
+}
+
+.lesson-form-title::after,
+.lessons-list-title::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background-color: var(--primary-color);
+    border-radius: 3px;
+}
+
+/* Form Elements - Redesign plus doux */
+.form-label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    transition: color var(--transition-fast);
+}
+
+.form-label:hover {
+    color: var(--primary-color);
+}
+
+.lesson-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    margin-bottom: 18px;
+    position: relative;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    font-size: 14px;
+    transition: all var(--transition-normal);
+    background-color: var(--bg-card);
+    box-sizing: border-box;
+    color: var(--text-primary);
+    box-shadow: var(--shadow-sm);
+}
+
+.form-control:hover {
+    border-color: var(--border-focus);
+    background-color: var(--bg-hover);
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.15);
+}
+
+textarea.form-control {
+    resize: vertical;
+    min-height: 80px;
+    font-family: var(--font-sans);
+    line-height: 1.5;
+}
+
+/* Checkbox Group - Plus moderne */
+.checkbox-group {
+    margin: 8px 0;
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--text-secondary);
+    transition: color var(--transition-fast);
+    user-select: none;
+}
+
+.checkbox-group label:hover {
+    color: var(--primary-color);
+}
+
+.checkbox-group input[type="checkbox"] {
+    margin-right: 10px;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: var(--primary-color);
+    transition: transform var(--transition-fast);
+    border-radius: 4px;
+}
+
+.checkbox-group input[type="checkbox"]:hover {
+    transform: scale(1.05);
+}
+
+/* Form Buttons - Plus élégants et attrayants */
+.form-actions {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.submit-btn {
+    padding: 12px 20px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 15px;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    font-weight: 500;
+    width: 100%;
+    box-shadow: 0 2px 5px rgba(67, 97, 238, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.submit-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: var(--transition-fast);
+}
+
+.submit-btn:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(67, 97, 238, 0.4);
+}
+
+.submit-btn:hover::before {
+    left: 100%;
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(67, 97, 238, 0.3);
+}
+
+.submit-btn:disabled {
+    background-color: var(--border-focus);
+    color: var(--text-muted);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.cancel-btn {
+    padding: 12px 20px;
+    background-color: var(--bg-hover);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    font-size: 15px;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    font-weight: 500;
+    width: 100%;
+}
+
+.cancel-btn:hover {
+    background-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+.edit-course-button-container {
+    margin-top: auto;
+    padding-top: 25px;
+    border-top: 1px solid var(--border-color);
+    margin-top: 25px;
+}
+
+.edit-course-btn {
+    padding: 12px 20px;
+    background-color: var(--bg-hover);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    font-size: 15px;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    width: 100%;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.edit-course-btn:hover {
+    background-color: var(--border-color);
+    color: var(--text-primary);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Lessons List - Design plus raffiné */
+.lessons-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.lesson-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 16px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    background-color: var(--bg-card);
+    transition: all var(--transition-normal);
+    box-shadow: var(--shadow-sm);
+    min-height: auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.lesson-item:hover {
+    background-color: var(--bg-hover);
+    border-color: var(--border-focus);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.lesson-item.editing {
+    border-left: 3px solid var(--primary-color);
+    background-color: var(--primary-light);
+}
+
+/* Indicateur d'édition plus visible */
+.lesson-item.editing::before {
+    content: "En cours d'édition";
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 10px;
+    font-weight: 500;
+}
+
+.lesson-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.lesson-title {
+    margin: 0 0 6px 0;
+    font-size: 15px;
+    color: var(--text-primary);
+    font-weight: 600;
+    line-height: 1.3;
+    transition: color var(--transition-fast);
+}
+
+.lesson-item:hover .lesson-title {
+    color: var(--primary-color);
+}
+
+.lesson-description {
+    margin: 0;
+    font-size: 13px;
+    color: var(--text-secondary);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.4;
+    transition: color var(--transition-fast);
+}
+
+.lesson-item:hover .lesson-description {
+    color: var(--text-primary);
+}
+
+/* Badges améliorés */
+.lesson-ai-badge {
+    background-color: var(--secondary-color);
+    color: white;
+    font-size: 0.65rem;
+    padding: 2px 8px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-top: 5px;
+    font-weight: 500;
+    transition: all var(--transition-fast);
+    box-shadow: 0 1px 2px rgba(76, 201, 240, 0.3);
+}
+
+.lesson-item:hover .lesson-ai-badge {
+    transform: scale(1.05);
+    box-shadow: 0 2px 4px rgba(76, 201, 240, 0.4);
+}
+
+.lesson-quiz-badge {
+    background-color: var(--success-color);
+    color: white;
+    font-size: 0.65rem;
+    padding: 2px 8px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-top: 5px;
+    margin-left: 5px;
+    font-weight: 500;
+    transition: all var(--transition-fast);
+    box-shadow: 0 1px 2px rgba(74, 222, 128, 0.3);
+}
+
+.lesson-item:hover .lesson-quiz-badge {
+    transform: scale(1.05);
+    box-shadow: 0 2px 4px rgba(74, 222, 128, 0.4);
+}
+
+/* Lesson Actions - Boutons plus attrayants */
+.lesson-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 0;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.edit-lesson-btn,
+.manage-chapters-btn,
+.delete-lesson-btn,
+.display-lesson-btn,
+.view-quiz-btn {
+    padding: 8px 14px;
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 13px;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    font-weight: 500;
+    white-space: nowrap;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.edit-lesson-btn {
+    background-color: var(--bg-hover);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+}
+
+.edit-lesson-btn:hover {
+    background-color: var(--border-color);
+    color: var(--text-primary);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+.manage-chapters-btn {
+    background-color: var(--primary-light);
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+}
+
+.manage-chapters-btn:hover {
+    background-color: var(--primary-color);
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 5px rgba(67, 97, 238, 0.3);
+}
+
+.delete-lesson-btn {
+    background-color: var(--danger-light);
+    color: var(--danger-color);
+    border: 1px solid var(--danger-color);
+}
+
+.delete-lesson-btn:hover {
+    background-color: var(--danger-color);
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 5px rgba(248, 113, 113, 0.3);
+}
+
+.display-lesson-btn {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.display-lesson-btn:hover {
+    background-color: #3ab8df;
+    /* Version plus foncée */
+    transform: translateY(-1px);
+    box-shadow: 0 2px 5px rgba(76, 201, 240, 0.4);
+}
+
+.view-quiz-btn {
+    background-color: var(--success-color);
+    color: white;
+}
+
+.view-quiz-btn:hover {
+    background-color: #3ec96f;
+    /* Version plus foncée */
+    transform: translateY(-1px);
+    box-shadow: 0 2px 5px rgba(74, 222, 128, 0.4);
+}
+
+/* Messages - Plus harmonieux */
+.error-message {
+    color: var(--danger-color);
+    background-color: var(--danger-light);
+    border: 1px solid var(--danger-color);
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    border-radius: var(--radius-md);
+    font-size: 14px;
+    transition: all var(--transition-fast);
+    position: relative;
+    padding-left: 36px;
+}
+
+.error-message::before {
+    content: "⚠️";
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.error-message:hover {
+    box-shadow: 0 2px 5px rgba(248, 113, 113, 0.2);
+}
+
+.success-message {
+    color: #16a34a;
+    background-color: var(--success-light);
+    border: 1px solid var(--success-color);
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    border-radius: var(--radius-md);
+    font-size: 14px;
+    transition: all var(--transition-fast);
+    position: relative;
+    padding-left: 36px;
+}
+
+.success-message::before {
+    content: "✅";
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.success-message:hover {
+    box-shadow: 0 2px 5px rgba(74, 222, 128, 0.2);
+}
+
+.loading-message,
+.no-lessons-message {
+    text-align: center;
+    padding: 30px;
+    color: var(--text-secondary);
+    font-size: 15px;
+    background-color: var(--bg-hover);
+    border-radius: var(--radius-md);
+    border: 1px dashed var(--border-color);
+    transition: all var(--transition-normal);
+    margin: 10px 0;
+}
+
+.loading-message::before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid var(--border-color);
+    border-radius: 50%;
+    border-top-color: var(--primary-color);
+    margin-right: 10px;
+    vertical-align: middle;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.no-lessons-message {
+    padding: 40px 20px;
+    font-size: 16px;
+    color: var(--text-secondary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.no-lessons-message::before {
+    content: "📚";
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+/* Finish Button - Plus attractif */
+.finish-course-container {
+    margin-top: 25px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: flex-end;
+    padding: 8px 0;
+}
+
+.finish-course-btn {
+    padding: 12px 24px;
+    background-color: var(--success-color);
+    color: white;
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    box-shadow: 0 3px 6px rgba(74, 222, 128, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.finish-course-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: var(--transition-fast);
+}
+
+.finish-course-btn:hover {
+    background-color: #3ec96f;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(74, 222, 128, 0.4);
+}
+
+.finish-course-btn:hover::before {
+    left: 100%;
+}
+
+.finish-course-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(74, 222, 128, 0.3);
+}
+
+/* No Lessons State - Plus visible */
+.lesson-page-container.no-lessons {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: calc(100vh - 60px);
+    padding-top: 40px;
+    background-color: var(--bg-main);
+}
+
+.lesson-form-sidebar.centered-form {
+    width: 550px;
+    margin: 0 auto;
+    max-width: 90%;
+    box-shadow: var(--shadow-lg);
+    border-radius: var(--radius-lg);
+    padding: 35px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-card);
+    position: relative;
+    overflow: hidden;
+}
+
+.lesson-form-sidebar.centered-form::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+    .lesson-page-container {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .lesson-form-sidebar {
+        flex: none;
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .lessons-list-container {
+        flex: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .lesson-page-container {
+        padding: 15px;
+    }
+
+    .lesson-form-sidebar,
+    .lessons-list-container {
+        padding: 20px;
+    }
+
+    .lesson-item {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px;
+    }
+
+    .lesson-actions {
+        margin-top: 12px;
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .form-control {
+        padding: 10px 12px;
+    }
+
+    .submit-btn,
+    .cancel-btn,
+    .edit-course-btn {
+        padding: 10px 16px;
+    }
+}
+
+/* Transitions douces pour les animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.lesson-item {
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* Améliorations d'accessibilité */
+.form-control:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 1px;
+}
+
+button:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* Effet de focus visible pour améliorer l'accessibilité */
+.form-control:focus,
+button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.3);
+}
+
+/* Styles pour la boîte de dialogue de confirmation de quiz */
+.quiz-confirmation-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(3px);
+}
+
+.quiz-confirmation-dialog {
+    background-color: var(--bg-card);
+    border-radius: var(--radius-lg);
+    padding: 30px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-color);
+    animation: slideIn 0.3s ease;
+    position: relative;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.quiz-confirmation-dialog h3 {
+    margin-top: 0;
+    color: var(--primary-color);
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border-color);
+    position: relative;
+}
+
+.quiz-confirmation-dialog h3::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background-color: var(--primary-color);
+    border-radius: 3px;
+}
+
+.quiz-confirmation-dialog p {
+    margin-bottom: 15px;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--text-primary);
+    text-align: center;
+}
+
+.quiz-confirmation-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+    justify-content: center;
+}
+
+.quiz-yes-btn,
+.quiz-no-btn {
+    padding: 12px 20px;
+    border-radius: var(--radius-md);
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    text-align: center;
+    border: none;
+}
+
+.quiz-yes-btn {
+    background-color: var(--success-color);
+    color: white;
+    box-shadow: 0 2px 5px rgba(74, 222, 128, 0.3);
+}
+
+.quiz-yes-btn:hover {
+    background-color: #3ec96f;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(74, 222, 128, 0.4);
+}
+
+.quiz-no-btn {
+    background-color: var(--bg-hover);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+}
+
+.quiz-no-btn:hover {
+    background-color: var(--border-color);
+    color: var(--text-primary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+
+@media (min-width: 768px) {
+    .quiz-confirmation-actions {
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .quiz-yes-btn,
+    .quiz-no-btn {
+        width: auto;
+    }
+}
+
+.view-course-content {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.view-course-button {
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.view-course-button:hover {
+    background-color: #e0e0e0;
+}

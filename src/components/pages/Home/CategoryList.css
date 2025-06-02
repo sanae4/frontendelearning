@@ -1,0 +1,82 @@
+/* CategoryList.css */
+.category-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+    margin: 20px 0;
+}
+
+.no-categories {
+    text-align: center;
+    padding: 40px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    color: #718096;
+    font-size: 16px;
+    font-style: italic;
+    border: 1px dashed #cbd5e0;
+}
+
+/* Animation pour l'apparition des catégories */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.category-list>* {
+    animation: fadeIn 0.3s ease-out forwards;
+}
+
+.category-list>*:nth-child(1) {
+    animation-delay: 0.05s;
+}
+
+.category-list>*:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.category-list>*:nth-child(3) {
+    animation-delay: 0.15s;
+}
+
+.category-list>*:nth-child(4) {
+    animation-delay: 0.2s;
+}
+
+.category-list>*:nth-child(5) {
+    animation-delay: 0.25s;
+}
+
+.category-list>*:nth-child(6) {
+    animation-delay: 0.3s;
+}
+
+.category-list>*:nth-child(7) {
+    animation-delay: 0.35s;
+}
+
+.category-list>*:nth-child(8) {
+    animation-delay: 0.4s;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .category-list {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .category-list {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+}

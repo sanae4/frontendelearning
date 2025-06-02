@@ -1,0 +1,1139 @@
+/* CourseEnrollmentPage.css - Version corrigée */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Réinitialisation globale et styles de base */
+
+
+body.no-navbar {
+    padding-top: 0;
+
+
+}
+
+/* Navigation de contenu en haut */
+.content-nav {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.content-nav .nav-item {
+    margin-right: 30px;
+}
+
+.content-nav .nav-link {
+    display: inline-block;
+    padding: 12px 5px;
+    color: #666;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.content-nav .nav-link:hover {
+    color: #1976d2;
+}
+
+.content-nav .nav-link.active {
+    color: #1976d2;
+    font-weight: 600;
+}
+
+.content-nav .nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #1976d2;
+    border-radius: 3px 3px 0 0;
+}
+
+/* Conteneur principal de contenu */
+.content-main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    /* Pour positionner le bouton quiz */
+    min-height: 500px;
+    /* Hauteur minimale pour avoir de l'espace */
+}
+
+/* Styles des notes et résumés */
+.notes-content {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 25px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    line-height: 1.6;
+    color: #444;
+    margin-top: 0;
+    /* Supprimez la marge du haut car c'est maintenant un onglet */
+}
+
+/* Ajustement responsive pour les onglets */
+@media (max-width: 768px) {
+    .content-nav .nav-item {
+        margin-right: 15px;
+    }
+
+    .content-nav .nav-link {
+        padding: 10px 5px;
+        font-size: 14px;
+    }
+}
+
+/* Container principal avec gestion de hauteur flexible */
+.course-enrollment-container {
+    height: calc(100vh - [header_height]px);
+    /* Adjust based on your header */
+    overflow: hidden;
+    /* Prevent nested scrolling */
+    display: grid;
+    grid-template-columns: 250px 1fr 400px;
+    width: 100%;
+    height: 100%;
+    /* Utilise 100% au lieu de 100vh */
+    gap: 0px;
+    background-color: #e0e0e0;
+    position: flex;
+
+    /* Pas de défilement au niveau du conteneur principal */
+}
+
+/* Sidebar styles - avec hauteur flexible et gestion du défilement */
+/* Styles améliorés pour la barre latérale */
+.course-sidebar {
+    background-color: #ffffff;
+    border-right: 1px solid #e0e0e0;
+    height: 100%;
+    overflow-y: auto;
+    padding: 24px;
+    box-shadow: 1px 0 5px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    position: flex;
+}
+
+
+
+/* Titre principal de la barre latérale */
+.sidebar-title {
+    font-size: 20px;
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 30px;
+    letter-spacing: -0.5px;
+}
+
+/* Liste des leçons sans style de liste */
+.lessons-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.lessons-list>li {
+    margin-bottom: 10px;
+}
+
+/* En-têtes des leçons (h3) avec style épuré */
+.lesson-header {
+    font-size: 15px;
+    padding: 10px 5px;
+    margin: 0;
+    cursor: pointer;
+    color: #555;
+    font-weight: 500;
+    transition: color 0.2s ease;
+    /* Pas de bordure ni d'arrière-plan */
+    background: none;
+    border: none;
+}
+
+.lesson-header:hover {
+    color: #1976d2;
+}
+
+.lesson-header.active {
+    color: #1976d2;
+    font-weight: 600;
+}
+
+/* Liste des chapitres sans style de liste ni lignes */
+.chapters-list {
+    list-style: none;
+    padding: 0;
+    margin: 8px 0 0 16px !important;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Éléments de chapitre (p) avec style minimal */
+.chapter-item {
+    padding: 6px 8px;
+    margin: 0 !important;
+    cursor: pointer;
+    font-size: 13px;
+    color: #666;
+    transition: color 0.2s ease;
+    font-weight: 400;
+    /* Pas de bordure ni d'arrière-plan */
+    background: none;
+    border: none;
+}
+
+.chapter-item:hover {
+    color: #1976d2;
+}
+
+.chapter-item.active {
+    color: #1976d2;
+    font-weight: 500;
+}
+
+/* Messages pour absence de contenu */
+.no-chapters,
+.no-content {
+    padding: 10px 5px;
+    color: #999;
+    font-style: italic;
+    font-size: 14px;
+    /* Pas d'arrière-plan ni de bordure */
+    background: none;
+    border: none;
+}
+
+/* Animation douce pour les transitions */
+.lesson-header,
+.chapter-item,
+.no-chapters,
+.no-content {
+    transition: color 0.3s ease, font-weight 0.3s ease;
+}
+
+/* Responsive pour petits écrans */
+@media (max-width: 768px) {
+    .course-sidebar {
+        padding: 20px 15px;
+    }
+
+    .sidebar-title {
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+
+    .lesson-header {
+        font-size: 16px;
+    }
+
+    .chapter-item {
+        font-size: 14px;
+    }
+}
+
+/* Effet spécial pour indiquer la hiérarchie sans utiliser de lignes */
+.chapters-list {
+    position: relative;
+    opacity: 0.95;
+}
+
+/* Animation douce à l'ouverture des chapitres */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.chapters-list {
+    animation: fadeIn 0.3s ease;
+}
+
+
+/* Zone de contenu principal - avec gestion améliorée de la hauteur et du défilement */
+.content-area {
+    background-color: #ffffff;
+    height: 100%;
+    overflow-y: auto;
+    padding: 20px;
+    display: relative;
+    flex-direction: column;
+}
+
+.content-header {
+    margin-bottom: 20;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.content-header h2 {
+    margin: 0;
+    font-size: 1.6em;
+    color: #333;
+}
+
+.content-header h3 {
+    margin: 5px 0 0;
+    font-size: 1.em;
+    color: #666;
+    font-weight: 500;
+}
+
+.content-display {
+    margin-bottom: 25px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Conteneur vidéo responsive */
+.video-container {
+    position: flex;
+    padding-bottom: 50%;
+    /* 16:9 aspect ratio */
+    width: 100%;
+    overflow: hidden;
+    background: #000;
+}
+
+.video-container iframe,
+.video-container video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Container PDF avec hauteur adaptative */
+.pdf-container {
+    height: calc(100vh - 200px);
+    /* Hauteur adaptative */
+    width: 100%;
+    border: 1px solid #eee;
+    padding: 0%;
+    box-sizing: border-box;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    flex-grow: 1;
+}
+
+.content-loading,
+.content-error,
+.content-placeholder {
+    padding: 30px;
+    text-align: center;
+    color: #666;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content-error {
+    color: #d32f2f;
+}
+
+/* Section notes */
+.notes-section {
+    margin-top: 30px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.notes-content {
+    line-height: 1.6;
+    color: #444;
+}
+
+
+/* Add these styles to your CSS file */
+
+/* Container for the quiz button */
+.content-display {
+    position: relative;
+    /* Needed for absolute positioning of child elements */
+    min-height: 400px;
+    /* Ensure there's enough space */
+    padding-bottom: 60px;
+    /* Space for the button */
+}
+
+
+
+/* Make sure the content wrapper has proper spacing */
+.content-wrapper {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* Adjust the main content area to push everything down */
+.content-main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* Chat sidebar avec layout flexible */
+/* ChatInterface.css */
+.chat-sidebar {
+    width: 350px;
+    border-left: 1px solid #e1e5e9;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.chat-header {
+    padding: 1rem;
+    border-bottom: 1px solid #e1e5e9;
+    background: #f8f9fa;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-header h3 {
+    margin: 0;
+    color: #333;
+    font-size: 1.1rem;
+}
+
+.conversation-status {
+    font-size: 0.8rem;
+    color: #28a745;
+    background: #d4edda;
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+}
+
+.chat-error-banner {
+    background: #f8d7da;
+    color: #721c24;
+    padding: 0.75rem;
+    border-bottom: 1px solid #f5c6cb;
+}
+
+.chat-error-banner p {
+    margin: 0 0 0.5rem 0;
+    font-size: 0.9rem;
+}
+
+.error-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.error-actions button {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+.error-actions button:hover {
+    background: #c82333;
+}
+
+.chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem;
+    background: #f8f9fa;
+}
+
+.chat-welcome {
+    text-align: center;
+    padding: 2rem 1rem;
+    color: #6c757d;
+}
+
+.chat-message {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-message.user {
+    align-items: flex-end;
+}
+
+.chat-message.ai {
+    align-items: flex-start;
+}
+
+.message-content {
+    max-width: 80%;
+    padding: 0.75rem;
+    border-radius: 18px;
+    word-wrap: break-word;
+    line-height: 1.4;
+}
+
+.chat-message.user .message-content {
+    background: #007bff;
+    color: white;
+    border-bottom-right-radius: 4px;
+}
+
+.chat-message.ai .message-content {
+    background: white;
+    color: #333;
+    border: 1px solid #e1e5e9;
+    border-bottom-left-radius: 4px;
+}
+
+.message-content.loading {
+    background: white;
+    border: 1px solid #e1e5e9;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.typing-dot {
+    animation: typing 1.5s infinite;
+    font-size: 1.2rem;
+    color: #6c757d;
+}
+
+.typing-dot:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.typing-dot:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.typing-dot:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+@keyframes typing {
+
+    0%,
+    60%,
+    100% {
+        opacity: 0.3;
+    }
+
+    30% {
+        opacity: 1;
+    }
+}
+
+.message-timestamp {
+    font-size: 0.7rem;
+    color: #6c757d;
+    margin-top: 0.25rem;
+    padding: 0 0.5rem;
+}
+
+.chat-input-form {
+    border-top: 1px solid #e1e5e9;
+    background: white;
+    padding: 1rem;
+}
+
+.input-container {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.chat-input {
+    flex: 1;
+    border: 1px solid #e1e5e9;
+    border-radius: 20px;
+    padding: 0.75rem 1rem;
+    outline: none;
+    font-size: 0.9rem;
+}
+
+.chat-input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.chat-input:disabled {
+    background: #f8f9fa;
+    color: #6c757d;
+}
+
+.chat-send-button {
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+}
+
+.chat-send-button:hover:not(:disabled) {
+    background: #0056b3;
+}
+
+.chat-send-button:disabled {
+    background: #6c757d;
+    cursor: not-allowed;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .chat-sidebar {
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+    }
+}
+
+
+.chat-sidebar {
+    background-color: #ffffff;
+    border-left: 1px solid #e0e0e0;
+    position: fixed;
+    /* Changed from height: fixed */
+    right: 0;
+    top: 0;
+    bottom: 0;
+    /* Will stretch from top to bottom */
+    width: 407px;
+    /* Fixed width or use flex basis */
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    /* Adds scroll if content overflows */
+}
+
+.chat-header {
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.chat-header h3 {
+    margin: 0;
+    font-size: 1.3em;
+    color: #333;
+}
+
+.chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+.chat-welcome {
+    padding: 20px;
+    background-color: #f0f4f8;
+    border-radius: 8px;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.chat-message {
+    margin-bottom: 15px;
+    max-width: 80%;
+}
+
+.chat-message.user {
+    margin-left: auto;
+}
+
+.chat-message.ai {
+    margin-right: auto;
+}
+
+.message-content {
+    padding: 12px 16px;
+    border-radius: 18px;
+    line-height: 1.4;
+}
+
+.chat-message.user .message-content {
+    background-color: #1976d2;
+    color: white;
+    border-top-right-radius: 4px;
+}
+
+.chat-message.ai .message-content {
+    background-color: #f0f4f8;
+    color: #333;
+    border-top-left-radius: 4px;
+}
+
+.message-timestamp {
+    font-size: 0.75em;
+    color: #999;
+    margin-top: 4px;
+    text-align: right;
+}
+
+.chat-message.ai .message-timestamp {
+    text-align: left;
+}
+
+.message-content.loading span {
+    animation: loadingDots 1.5s infinite;
+    opacity: 0;
+}
+
+.message-content.loading span:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.message-content.loading span:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.message-content.loading span:nth-child(3) {
+    animation-delay: 1s;
+}
+
+@keyframes loadingDots {
+
+    0%,
+    100% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+.chat-input-form {
+    padding: 15px;
+    border-top: 1px solid #eee;
+    display: flex;
+    background-color: #f9f9f9;
+}
+
+.chat-input {
+    flex: 1;
+    padding: 12px 15px;
+
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    outline: none;
+    font-size: 0.9em;
+}
+
+.chat-input:focus {
+    border-color: #1976d2;
+}
+
+.chat-send-button {
+    margin-left: 100px;
+    padding: 6px 50px;
+    background-color: #1976d2;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+.chat-send-button:hover {
+    background-color: #1565c0;
+}
+
+.chat-send-button:disabled {
+    background-color: #b0bec5;
+    cursor: not-allowed;
+}
+
+.chat-error-banner {
+    padding: 10px 15px;
+    background-color: #ffebee;
+    color: #d32f2f;
+    font-size: 0.9em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-error-banner button {
+    background: none;
+    border: none;
+    color: #d32f2f;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* États de chargement et d'erreur */
+.loading-container,
+.error-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-size: 1.2em;
+}
+
+.error-container {
+    color: #d32f2f;
+}
+
+/* Ajustements responsifs améliorés */
+@media (max-width: 1200px) {
+    .course-enrollment-container {
+        grid-template-columns: 250px 1fr 300px;
+    }
+}
+
+@media (max-width: 992px) {
+    .course-enrollment-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr auto;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .course-sidebar {
+        max-height: 30vh;
+        overflow-y: auto;
+        border-right: none;
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    .content-area {
+        max-height: calc(100vh - 60vh);
+        /* Ajustez selon les besoins */
+        overflow-y: auto;
+    }
+
+    .chat-sidebar {
+        max-height: 30vh;
+        overflow-y: auto;
+        border-left: none;
+        border-top: 1px solid #e0e0e0;
+    }
+
+    .pdf-container {
+        height: calc(100vh - 60vh - 100px);
+        /* Ajustement pour le mode mobile */
+    }
+}
+
+/* Pour les très petits écrans */
+@media (max-width: 576px) {
+    .course-sidebar {
+        max-height: 25vh;
+    }
+
+    .content-area {
+        max-height: calc(100vh - 50vh);
+    }
+
+    .chat-sidebar {
+        max-height: 25vh;
+    }
+}
+
+/* Simple Notes Component */
+.notes {
+    padding: 1rem;
+    background: #f5f9ff;
+    border-radius: 8px;
+    margin-top: 1rem;
+}
+
+.notes h4 {
+    color: #2c5282;
+    margin-bottom: 1rem;
+}
+
+.notes-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem 0;
+}
+
+.notes-list li {
+    background: white;
+    padding: 0.75rem;
+    margin-bottom: 0.5rem;
+    border-radius: 4px;
+    border-left: 3px solid #4299e1;
+}
+
+.notes-list li div {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    color: #718096;
+}
+
+.notes-list button {
+    background: none;
+    border: none;
+    color: #e53e3e;
+    cursor: pointer;
+}
+
+.add-note textarea {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 0.5rem;
+    border: 1px solid #bee3f8;
+    border-radius: 4px;
+    min-height: 80px;
+}
+
+.add-note div {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.add-note button {
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.add-note button:first-child {
+    background: #4299e1;
+    color: white;
+    border: none;
+}
+
+.add-note button:last-child {
+    background: white;
+    border: 1px solid #cbd5e0;
+}
+
+.notes>button {
+    background: #4299e1;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Ajoutez ceci à votre fichier CSS */
+
+.quiz-button-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.quiz-info-banner {
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.success-banner {
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+}
+
+.warning-banner {
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+}
+
+.quiz-button {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.lesson-quiz {
+    background-color: #007bff;
+    color: white;
+}
+
+.lesson-quiz:hover:not(:disabled) {
+    background-color: #0056b3;
+}
+
+.final-quiz {
+    background-color: #28a745;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
+}
+
+.final-quiz:hover:not(:disabled) {
+    background-color: #218838;
+    transform: translateY(-2px);
+}
+
+.final-quiz.disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.error-message {
+    color: #dc3545;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+/* CourseProgress.css */
+.progression-info {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 5px;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: #4caf50;
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+.progress-text {
+    font-size: 14px;
+    color: #666;
+}
+
+.chapter-actions {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.mark-complete-btn {
+    position: absolute;
+    right: 20px;
+    top: 59ch;
+    padding: 10px 20px;
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+.mark-complete-btn:hover {
+    background-color: #45a049;
+}
+
+.completed-badge {
+    display: inline-block;
+    padding: 8px 16px;
+    margin: 0px 0px 0px 700px;
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.quiz-button-container {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.lesson-quiz-btn,
+.course-quiz-btn {
+    padding: 12px 24px;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    width: 250px;
+    text-align: center;
+}
+
+.lesson-quiz-btn {
+    background-color: #2196f3;
+    color: white;
+    border: none;
+}
+
+.lesson-quiz-btn:hover {
+    background-color: #1976d2;
+}
+
+.course-quiz-btn {
+    background-color: #ff5722;
+    color: white;
+    border: none;
+}
+
+.course-quiz-btn:hover {
+    background-color: #e64a19;
+}
+
+.course-quiz-btn.disabled {
+    background-color: #bdbdbd;
+    cursor: not-allowed;
+}
+
+.quiz-final-info {
+    margin-top: 5px;
+    font-size: 13px;
+    color: #f44336;
+    max-width: 300px;
+    text-align: center;
+}

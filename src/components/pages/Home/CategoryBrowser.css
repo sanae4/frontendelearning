@@ -1,0 +1,102 @@
+/* CategoryBrowser.css */
+.category-browser {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Category Header */
+.category-header {
+    text-align: center;
+    margin-bottom: 10px;
+    padding: 15px 15px;
+}
+
+.category-header h1 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #2d3748;
+    margin-bottom: 10px;
+}
+
+.category-subtitle {
+    font-size: 16px;
+    color: #718096;
+    max-width: 1000px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Loading State */
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+    font-size: 16px;
+    color: #718096;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    border: 1px dashed #cbd5e0;
+}
+
+/* Error Message */
+.error-message {
+    text-align: center;
+    padding: 20px;
+    background-color: #fff5f5;
+    border-radius: 8px;
+    color: #e53e3e;
+    margin: 20px 0;
+    border: 1px solid #fed7d7;
+}
+
+/* Animation pour l'apparition des éléments */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.category-browser>* {
+    animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+    .category-header h1 {
+        font-size: 28px;
+    }
+
+    .category-subtitle {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .category-header {
+        padding: 20px 0;
+    }
+
+    .category-header h1 {
+        font-size: 24px;
+    }
+
+    .category-subtitle {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 576px) {
+    .category-browser {
+        padding: 15px;
+    }
+}

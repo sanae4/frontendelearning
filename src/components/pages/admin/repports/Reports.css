@@ -1,0 +1,464 @@
+/* src/components/reports/Reports.css */
+/* Styles pour les composants de rapports */
+
+/* Styles communs */
+.report-container,
+.admin-reports-container,
+.report-detail-container {
+    max-width: 1200px;
+    margin: 90px auto 30px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.error-message,
+.success-message {
+    margin: 15px 0;
+    padding: 10px 15px;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.error-message {
+    background-color: #ffe9e9;
+    color: #d32f2f;
+    border-left: 4px solid #d32f2f;
+}
+
+.success-message {
+    background-color: #e9f5e9;
+    color: #2e7d32;
+    border-left: 4px solid #2e7d32;
+}
+
+.btn {
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+}
+
+.btn-primary {
+    background-color: #4361ee;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #3a56d4;
+}
+
+.btn-secondary {
+    background-color: #e0e0e0;
+    color: #333;
+}
+
+.btn-secondary:hover {
+    background-color: #d5d5d5;
+}
+
+.btn-view {
+    background-color: #4361ee;
+    color: white;
+    text-decoration: none;
+}
+
+.btn-view:hover {
+    background-color: #3a56d4;
+}
+
+.btn-archive {
+    background-color: #ff9800;
+    color: white;
+}
+
+.btn-archive:hover {
+    background-color: #f57c00;
+}
+
+.btn-delete {
+    background-color: #f44336;
+    color: white;
+}
+
+.btn-delete:hover {
+    background-color: #d32f2f;
+}
+
+.btn-back {
+    background-color: #757575;
+    color: white;
+}
+
+.btn-back:hover {
+    background-color: #616161;
+}
+
+.loading,
+.no-reports,
+.not-found {
+    text-align: center;
+    margin: 40px 0;
+    color: #757575;
+    font-size: 16px;
+}
+
+/* Styles pour le formulaire de création de rapport */
+.report-form {
+    margin-top: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+
+
+.form-control {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: border-color 0.2s;
+}
+
+.form-control:focus {
+    border-color: #4361ee;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
+}
+
+select.form-control[multiple] {
+    height: auto;
+    min-height: 120px;
+}
+
+.form-text {
+    display: block;
+    margin-top: 5px;
+    font-size: 12px;
+    color: #757575;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+/* Styles pour la liste des rapports */
+.reports-controls {
+    margin-bottom: 20px;
+}
+
+.search-filter-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.search-container {
+    flex: 1;
+    max-width: 500px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 25px;
+    font-size: 14px;
+    transition: all 0.2s;
+}
+
+.search-input:focus {
+    border-color: #4361ee;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
+}
+
+.filter-container {
+    margin-left: 15px;
+}
+
+.filter-select {
+    padding: 10px 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.filter-select:focus {
+    border-color: #4361ee;
+    outline: none;
+}
+
+.reports-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 20px;
+}
+
+.report-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 1px solid #f0f0f0;
+}
+
+.report-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.report-card.archived {
+    border-left: 4px solid #ff9800;
+    opacity: 0.8;
+}
+
+.report-header {
+    padding: 15px 20px;
+    border-bottom: 1px solid #f0f0f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.report-header h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+}
+
+.report-date {
+    font-size: 12px;
+    color: #757575;
+}
+
+.report-users {
+    padding: 10px 20px;
+    background-color: #f9f9f9;
+    font-size: 13px;
+}
+
+.report-users p {
+    margin: 5px 0;
+}
+
+.report-content {
+    padding: 15px 20px;
+    color: #555;
+    font-size: 14px;
+    min-height: 80px;
+}
+
+.report-footer {
+    padding: 15px 20px;
+    border-top: 1px solid #f0f0f0;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+/* Styles pour les détails du rapport */
+.report-detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.report-detail-header h2 {
+    margin: 0;
+    font-size: 22px;
+    color: #333;
+}
+
+.report-status {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.report-status.active {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+
+.report-status.archived {
+    background-color: #fff3e0;
+    color: #ef6c00;
+}
+
+.report-detail-meta {
+    margin-bottom: 20px;
+    color: #555;
+    font-size: 14px;
+}
+
+.report-detail-meta p {
+    margin: 8px 0;
+}
+
+.report-detail-students {
+    margin-bottom: 25px;
+}
+
+.report-detail-students h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.report-detail-students ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.report-detail-students li {
+    padding: 8px 12px;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.report-detail-content {
+    margin-top: 30px;
+}
+
+.report-detail-content h3 {
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.report-text {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    color: #333;
+    line-height: 1.6;
+}
+
+.report-detail-actions {
+    margin-top: 30px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+
+    .report-container,
+    .admin-reports-container,
+    .report-detail-container {
+        padding: 15px;
+        margin-top: 80px;
+    }
+
+    .search-filter-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filter-container {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+
+    .reports-list {
+        grid-template-columns: 1fr;
+    }
+
+    .report-detail-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .report-status {
+        margin-top: 10px;
+    }
+
+    .report-detail-actions {
+        flex-direction: column;
+    }
+
+    .report-detail-actions button {
+        width: 100%;
+    }
+}
+
+/* Styles pour le composant UserReports */
+.user-reports-container {
+    max-width: 1200px;
+    margin: 90px auto 30px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.user-reports-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.user-reports-header h2 {
+    margin: 0;
+    font-size: 22px;
+    color: #333;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.status-badge.active {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+
+.status-badge.archived {
+    background-color: #fff3e0;
+    color: #ef6c00;
+}
+
+.report-status-info {
+    padding: 0 20px 10px;
+}
+
+.no-reports {
+    padding: 40px 0;
+    text-align: center;
+    color: #757575;
+}
+
+.no-reports p {
+    margin-bottom: 20px;
+}

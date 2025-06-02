@@ -1,0 +1,224 @@
+/* CourseContent.css */
+.course-content-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    min-height: 100vh;
+}
+
+.course-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.back-button {
+    display: flex;
+    align-items: center;
+}
+
+.course-banner {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.course-banner-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.course-banner-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+    padding: 30px 20px 20px;
+}
+
+.course-banner-content {
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.course-title {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.course-meta .badge {
+    font-size: 0.9rem;
+    padding: 6px 12px;
+}
+
+.course-content-tabs {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.nav-tabs {
+    border-bottom: none;
+    padding: 0 15px;
+    background-color: #f0f0f0;
+    border-radius: 10px 10px 0 0;
+}
+
+.nav-tabs .nav-link {
+    border: none;
+    border-radius: 0;
+    padding: 15px 25px;
+    font-weight: 600;
+    color: #555;
+    position: relative;
+    transition: color 0.3s;
+}
+
+.nav-tabs .nav-link:hover {
+    color: #0d6efd;
+}
+
+.nav-tabs .nav-link.active {
+    color: #0d6efd;
+    background-color: transparent;
+    border-bottom: 3px solid #0d6efd;
+}
+
+.tab-content {
+    padding: 30px !important;
+}
+
+.card {
+    border: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.card-title {
+    color: #2c3e50;
+    font-weight: 700;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.lesson-number {
+    background-color: #e9ecef;
+    padding: 3px 10px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #495057;
+}
+
+.accordion-item {
+    margin-bottom: 10px;
+    border: 1px solid #efefef;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.accordion-button {
+    padding: 15px 20px;
+    background-color: #f8f9fa;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: #e7f1ff;
+    color: #0d6efd;
+}
+
+.accordion-button:focus {
+    box-shadow: none;
+    border-color: rgba(13, 110, 253, 0.25);
+}
+
+.accordion-body {
+    padding: 20px;
+    background-color: #fff;
+}
+
+.quiz-container {
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.quiz-header {
+    margin-bottom: 20px;
+}
+
+.quiz-type {
+    display: inline-block;
+    padding: 3px 12px;
+    border-radius: 20px;
+    background-color: #e9ecef;
+    font-size: 0.85rem;
+    color: #495057;
+}
+
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+}
+
+.error-container {
+    padding: 50px 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.auth-error-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    background-color: #f8f9fa;
+    padding: 20px;
+}
+
+.auth-error-container .card {
+    width: 100%;
+    max-width: 500px;
+    padding: 30px;
+}
+
+.lesson-content {
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 6px;
+    margin-top: 10px;
+    white-space: pre-line;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .course-banner {
+        height: 200px;
+    }
+
+    .course-title {
+        font-size: 1.8rem;
+    }
+
+    .nav-tabs .nav-link {
+        padding: 12px 15px;
+        font-size: 0.9rem;
+    }
+
+    .tab-content {
+        padding: 20px !important;
+    }
+}

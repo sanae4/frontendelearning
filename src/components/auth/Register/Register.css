@@ -1,0 +1,283 @@
+/* Register.css */
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+}
+
+.register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 500px;
+    width: 100%;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+    font-size: 28px;
+    color: royalblue;
+    font-weight: 600;
+    letter-spacing: -1px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+}
+
+.title::before,
+.title::after {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    left: 0px;
+    background-color: royalblue;
+}
+
+.title::before {
+    width: 18px;
+    height: 18px;
+    background-color: royalblue;
+}
+
+.title::after {
+    width: 18px;
+    height: 18px;
+    animation: pulse 1s linear infinite;
+}
+
+.message,
+.signin {
+    color: rgba(88, 87, 87, 0.822);
+    font-size: 14px;
+}
+
+.signin {
+    text-align: center;
+}
+
+.signin a {
+    color: royalblue;
+}
+
+.signin a:hover {
+    text-decoration: underline royalblue;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-group label {
+    font-weight: bold;
+    color: #555;
+}
+
+.form-group .input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.form-group .input:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.submit {
+    border: none;
+    outline: none;
+    background-color: royalblue;
+    padding: 10px;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 16px;
+    transition: 0.3s ease;
+    width: 100%;
+}
+
+.submit:hover {
+    background-color: rgb(56, 90, 194);
+}
+
+.error-message {
+    color: #dc3545;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.success-message {
+    color: #28a745;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+@keyframes pulse {
+    from {
+        transform: scale(0.9);
+        opacity: 1;
+    }
+
+    to {
+        transform: scale(1.8);
+        opacity: 0;
+    }
+}
+
+.form-group-row {
+    display: flex;
+    justify-content: space-between;
+    /* Espace entre les éléments */
+    gap: 20px;
+    /* Espace entre les éléments */
+}
+
+
+
+.register-container {
+    .login-container {
+        display: flex;
+        justify-content: center;
+        /* Centre horizontalement */
+        align-items: center;
+        /* Centre verticalement */
+        height: 100vh;
+        /* Prend toute la hauteur de la fenêtre */
+        margin: 0;
+        /* Supprime les marges par défaut */
+        background-color: #f0f0f0;
+        /* Couleur de fond pour le contraste */
+
+    }
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 600px;
+    /* Augmenter la largeur du formulaire */
+    width: 100%;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-group-row {
+    display: flex;
+    justify-content: space-between;
+    /* Espace entre les éléments */
+    gap: 20px;
+    /* Espace entre les éléments */
+}
+
+
+
+/* Ajoutez ces styles à votre fichier Register.css */
+
+.send-code-button {
+    background-color: royalblue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 12px;
+    height: 30px;
+    min-width: 60px;
+    transition: background-color 0.3s ease;
+    margin-top: 0;
+}
+
+.send-code-button:hover {
+    background-color: rgb(56, 90, 194);
+}
+
+.input-error {
+    border-color: #dc3545 !important;
+    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25) !important;
+}
+
+.error-text {
+    color: #dc3545;
+    font-size: 12px;
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+
+/* Styles pour le composant de téléphone */
+/* Styles pour le composant de téléphone - version corrigée */
+.react-tel-input {
+    width: 100% !important;
+    font-family: Arial, sans-serif;
+}
+
+.react-tel-input .form-control {
+    width: 100% !important;
+    height: 38px !important;
+    padding: 10px 10px 10px 48px !important;
+    border: 1px solid #ccc !important;
+    border-radius: 5px !important;
+    font-size: 16px !important;
+}
+
+.react-tel-input .flag-dropdown {
+    border: 1px solid #ccc !important;
+    border-radius: 5px 0 0 5px !important;
+    background-color: white !important;
+}
+
+.react-tel-input .selected-flag {
+    padding: 0 8px 0 11px !important;
+    border-radius: 5px 0 0 5px !important;
+}
+
+.react-tel-input .selected-flag:hover,
+.react-tel-input .selected-flag:focus {
+    background-color: #f1f1f1 !important;
+}
+
+.react-tel-input .country-list {
+    margin: 10px 0 10px -1px !important;
+    max-height: 200px !important;
+    width: 300px !important;
+}
+
+
+/* Styles pour la force du mot de passe */
+.password-strength {
+    font-size: 12px;
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+
+.password-strength.weak {
+    color: #dc3545;
+}
+
+.password-strength.strong {
+    color: #28a745;
+}
