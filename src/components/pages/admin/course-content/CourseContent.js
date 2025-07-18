@@ -27,7 +27,7 @@ const CourseContent = () => {
                     return;
                 }
 
-                const response = await axios.get(`http://192.168.11.113:8080/api/course/${courseId}`, {
+                const response = await axios.get(`http://localhost:8080/api/course/${courseId}`, {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
 

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 
-import 'react-toastify/dist/ReactToastify.css';
+
 import './TeacherManagement.css';
 
 const TeacherManagement = () => {
@@ -39,7 +40,7 @@ const TeacherManagement = () => {
                     return;
                 }
 
-                const response = await axios.get('http://192.168.11.113:8080/api/enseignant/pending', {
+                const response = await axios.get('http://localhost:8080/api/enseignant/pending', {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
 
@@ -75,7 +76,7 @@ const TeacherManagement = () => {
 
                 console.log("Tentative de récupération des enseignants");
 
-                const response = await axios.get('http://192.168.11.113:8080/api/enseignant', {
+                const response = await axios.get('http://localhost:8080/api/enseignant', {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
 
@@ -148,7 +149,7 @@ const TeacherManagement = () => {
             }
 
             // URL pour correspondre au contrôleur backend
-            const response = await axios.get(`http://192.168.11.113:8080/api/course/enseignant/${teacherId}`, {
+            const response = await axios.get(`http://localhost:8080/api/course/enseignant/${teacherId}`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
 
@@ -187,7 +188,7 @@ const TeacherManagement = () => {
                 return null;
             }
 
-            const response = await axios.get(`http://192.168.11.113:8080/api/course/${courseId}`, {
+            const response = await axios.get(`http://localhost:8080/api/course/${courseId}`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
 
@@ -253,7 +254,7 @@ const TeacherManagement = () => {
                 return;
             }
 
-            await axios.put(`http://192.168.11.113:8080/api/enseignant/${teacherId}/approve`, {}, {
+            await axios.put(`http://localhost:8080/api/enseignant/${teacherId}/approve`, {}, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
 

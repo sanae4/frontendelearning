@@ -28,7 +28,7 @@ const LoginForm = ({ setUser }) => {
         setErrorMessage('');
 
         try {
-            const response = await axios.post('http://192.168.11.113:8080/api/auth/login', formData);
+            const response = await axios.post('http://localhost:8080/api/auth/login', formData);
             console.log('API Response:', response.data);
 
             // Extract token directly from response.data
@@ -47,7 +47,7 @@ const LoginForm = ({ setUser }) => {
                         localStorage.setItem('temp-token', token);
 
                         // Get teacher information to check status
-                        const teacherResponse = await axios.get(`http://192.168.11.113:8080/api/enseignant/${userInfo.id}`, {
+                        const teacherResponse = await axios.get(`http://localhost:8080/api/enseignant/${userInfo.id}`, {
                             headers: { 'Authorization': `Bearer ${token}` }
                         });
 
@@ -80,7 +80,7 @@ const LoginForm = ({ setUser }) => {
                 if (userInfo.role === 'ROLE_ENSEIGNANT') {
                     navigate('/create_course');
                 } else if (userInfo.role === 'ROLE_ETUDIANT') {
-                    navigate('/etudiant/dashboard');
+                    navigate('/categories');
                 } else {
                     navigate('/admin-dashboard');
                 }

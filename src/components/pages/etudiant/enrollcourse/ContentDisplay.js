@@ -22,14 +22,14 @@ const ContentDisplay = ({ course, activeLesson, activeChapter, onChapterComplete
         if (course?.id) {
             const fetchAllLessons = async () => {
                 try {
-                    const response = await axios.get(`http://192.168.11.113:8080/api/lecons/course/${course.id}`);
+                    const response = await axios.get(`http://localhost:8080/api/lecons/course/${course.id}`);
                     setAllLessons(response.data || []);
 
                     // Charger tous les chapitres pour toutes les leçons
                     const chaptersMap = {};
                     for (const lesson of response.data || []) {
                         try {
-                            const chaptersResponse = await axios.get(`http://192.168.11.113:8080/api/chapitre/byLecon/${lesson.id}`);
+                            const chaptersResponse = await axios.get(`http://localhost:8080/api/chapitre/byLecon/${lesson.id}`);
                             chaptersMap[lesson.id] = chaptersResponse.data || [];
                         } catch (err) {
                             console.error(`Error fetching chapters for lesson ${lesson.id}:`, err);
@@ -60,7 +60,7 @@ const ContentDisplay = ({ course, activeLesson, activeChapter, onChapterComplete
         if (activeLesson?.id) {
             const fetchChapters = async () => {
                 try {
-                    const response = await axios.get(`http://192.168.11.113:8080/api/lecon/${activeLesson.id}/chapitres`);
+                    const response = await axios.get(`http://localhost:8080/api/lecon/${activeLesson.id}/chapitres`);
                     setChapters(response.data || []);
                 } catch (err) {
                     console.error('Error fetching chapters:', err);
@@ -92,7 +92,7 @@ const ContentDisplay = ({ course, activeLesson, activeChapter, onChapterComplete
                 if (activeChapter.type === 'VIDEO') {
                     try {
                         const response = await axios.get(
-                            `http://192.168.11.113:8080/api/chapitre/${activeChapter.id}/content`,
+                            `http://localhost:8080/api/chapitre/${activeChapter.id}/content`,
                             { responseType: 'blob' }
                         );
 
@@ -111,7 +111,7 @@ const ContentDisplay = ({ course, activeLesson, activeChapter, onChapterComplete
                 if (activeChapter.type === 'PDF' || activeChapter.type === 'TEXT') {
                     try {
                         const response = await axios.get(
-                            `http://192.168.11.113:8080/api/chapitre/${activeChapter.id}/content`,
+                            `http://localhost:8080/api/chapitre/${activeChapter.id}/content`,
                             { responseType: 'blob' }
                         );
 

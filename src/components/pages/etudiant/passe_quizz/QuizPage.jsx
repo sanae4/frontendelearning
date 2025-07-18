@@ -47,7 +47,7 @@ const QuizPage = () => {
         const fetchQuizData = async () => {
             try {
                 // Récupérer les informations du quiz
-                const quizResponse = await axios.get(`http://192.168.11.113:8080/api/question/quiz-generated/${quizId}`);
+                const quizResponse = await axios.get(`http://localhost:8080/api/question/quiz-generated/${quizId}`);
                 const quizData = quizResponse.data;
                 setQuizInfo(quizData);
                 console.log("Quiz data:", quizData);
@@ -59,7 +59,7 @@ const QuizPage = () => {
 
                     try {
                         // Récupérer les informations de la leçon
-                        const lessonResponse = await axios.get(`http://192.168.11.113:8080/api/lecons/${lessonId}`);
+                        const lessonResponse = await axios.get(`http://localhost:8080/api/lecons/${lessonId}`);
                         const lessonData = lessonResponse.data;
                         console.log("Lesson data:", lessonData);
 
@@ -74,7 +74,7 @@ const QuizPage = () => {
 
                             // Récupérer les informations du cours avec sa configuration de quiz
                             try {
-                                const courseResponse = await axios.get(`http://192.168.11.113:8080/api/course/${lessonData.courseId}`);
+                                const courseResponse = await axios.get(`http://localhost:8080/api/course/${lessonData.courseId}`);
                                 const courseData = courseResponse.data;
                                 console.log("Course data:", courseData);
 
@@ -93,7 +93,7 @@ const QuizPage = () => {
                             }
 
                             // Récupérer les informations d'avancement
-                            const avancementResponse = await axios.get(`http://192.168.11.113:8080/api/avancement/${studentId}/${lessonData.courseId}`);
+                            const avancementResponse = await axios.get(`http://localhost:8080/api/avancement/${studentId}/${lessonData.courseId}`);
                             const avancementData = avancementResponse.data;
                             console.log("Avancement data:", avancementData);
                             setAvancementInfo(avancementData);
@@ -110,7 +110,7 @@ const QuizPage = () => {
                 }
 
                 // Récupérer les questions
-                const questionsResponse = await axios.get(`http://192.168.11.113:8080/api/question/quiz-generated/${quizId}`);
+                const questionsResponse = await axios.get(`http://localhost:8080/api/question/quiz-generated/${quizId}`);
                 const questionsWithoutAnswers = questionsResponse.data.map(question => ({
                     ...question,
                     reponsCcorrect: undefined,
@@ -200,7 +200,7 @@ const QuizPage = () => {
             }));
 
             const resultResponse = await axios.post(
-                `http://192.168.11.113:8080/api/resultat/quiz-genere/${quizId}/soumettre`,
+                `http://localhost:8080/api/resultat/quiz-genere/${quizId}/soumettre`,
                 reponses
             );
 
@@ -216,7 +216,7 @@ const QuizPage = () => {
             }
 
             const questionsWithAnswersPromises = questions.map(async (question) => {
-                const fullQuestionResponse = await axios.get(`http://192.168.11.113:8080/api/question/${question.id}`);
+                const fullQuestionResponse = await axios.get(`http://localhost:8080/api/question/${question.id}`);
                 return { ...fullQuestionResponse.data, userAnswer: answers[question.id] || '' };
             });
 
@@ -288,7 +288,7 @@ const QuizPage = () => {
 
             // Appel API pour générer le quiz final
             const response = await axios.post(
-                'http://192.168.11.113:8080/api/generation/etudiants/quizzes-from-config',
+                'http://localhost:8080/api/generation/etudiants/quizzes-from-config',
                 payload
             );
 
@@ -326,7 +326,7 @@ const QuizPage = () => {
         try {
             if (etudiantId && courseId) {
                 // Réinitialiser l'avancement de l'étudiant pour ce cours
-                await axios.post(`http://192.168.11.113:8080/api/avancement/${etudiantId}/${courseId}/restart`);
+                await axios.post(`http://localhost:8080/api/avancement/${etudiantId}/${courseId}/restart`);
 
                 // Réinitialiser le compteur d'échecs dans localStorage
                 localStorage.removeItem(`quiz_echecs_${quizId}`);
@@ -409,7 +409,6 @@ const QuizPage = () => {
     };
 
     const renderFailureActions = () => {
-        // Si le quiz est réussi, ne rien afficher
         if (result?.estpasse) {
             return (
                 isLessonQuiz && (
@@ -425,31 +424,111 @@ const QuizPage = () => {
             <div className="failure-actions">
                 <div className="encouragement-failure">
                     <h3>Don't get discouraged!</h3>
-                    {/* Afficher un message spécifique si l'étudiant a échoué 3 fois ou plus */}
                     {echecs >= 3 ? (
                         <p>You've failed this quiz multiple times. It might be helpful to restart your learning from the beginning.</p>
                     ) : (
-                        <p>You can retake the quiz or return to the course to review.</p>
+                        <p>You can retake the quiz.</p>
                     )}
                 </div>
                 <div className="action-buttons">
-                    {/* Afficher le bouton de reprise à zéro uniquement après 3 échecs */}
                     {echecs >= 3 && isLessonQuiz && (
                         <button onClick={handleRestartLearning} className="action-btn restart-btn">
                             <RotateCcw size={20} />
                             Restart learning
                         </button>
                     )}
-                    {/* Ne montrer le bouton "Reprendre le quiz" que si moins de 3 échecs */}
                     {echecs < 3 && (
-                        <button onClick={handleRetryQuiz} className="action-btn retry-btn">
+                        <button
+                            onClick={handleAdvancedRetry}
+                            className="action-btn retry-btn"
+                        >
                             <RefreshCw size={20} />
-                            Retake quiz
+                            {isLessonQuiz ? "Retake lesson quiz " : "Retake lesson quiz"}
                         </button>
                     )}
                 </div>
             </div>
         );
+    };
+    const handleAdvancedRetry = async () => {
+        try {
+            // Check if we have the necessary data
+            if (!quizId || !etudiantId || !questionsWithAnswers.length || !courseConfigQuiz) {
+                console.error("Missing required data for advanced retry");
+                setError("Impossible de régénérer le quiz. Données manquantes.");
+                return;
+            }
+
+            // Get incorrect questions
+            const incorrectQuestions = questionsWithAnswers.filter(question => {
+                const isCorrect = checkAnswerCorrectness(question, question.userAnswer);
+                return isCorrect === false;
+            });
+
+            // Prepare the base payload
+            const payload = {
+                configurationId: 2, // ← Problème potentiel ici aussi
+                etudiantId: etudiantId,
+                quizOriginalId: parseInt(quizId),
+                questionsIncorrectes: incorrectQuestions.map(question => ({
+                    questionId: question.id,
+                    texteQuestion: question.texte,
+                    typeQuestion: question.type,
+                    optionsQuestion: Array.isArray(question.options) ?
+                        question.options.join('|') :
+                        (typeof question.options === 'string' ? question.options : ''),
+                    reponseCorrecte: question.reponsCcorrect,
+                    reponseEtudiant: question.userAnswer,
+                    explicationQuestion: question.explanation || ''
+                })),
+                focusMode: "TARGETED"
+            };
+
+            // Add either courseId or lessonId based on the quiz type
+            if (isLessonQuiz && lessonId) {
+                payload.lessonId = lessonId;
+            } else if (courseId) {
+                payload.courseId = courseId;
+            }
+
+            console.log("Sending payload for advanced regeneration:", payload);
+
+            // Make the API call - CORRECTION DE L'URL ICI
+            const response = await axios.post(
+                'http://localhost:8080/api/generation/regenerer-quiz-depuis-questions-incorrectes', // ← Changé de localhost
+                payload
+            );
+
+            const newQuizId = response.data.quizRegeneratedId || response.data.quizGenere?.id; // ← Correction ici
+
+            if (newQuizId) {
+                // Navigate to the new quiz
+                navigate(`/quiz/${newQuizId}`, {
+                    state: {
+                        isLessonQuiz: isLessonQuiz,
+                        lessonId: lessonId,
+                        courseId: courseId
+                    }
+                });
+                // Refresh after a short delay to ensure navigation is complete
+                setTimeout(() => {
+                    window.location.reload();
+                }, 100);
+            } else {
+                throw new Error("No quiz ID returned from API");
+            }
+        } catch (err) {
+            console.error("Erreur lors de la régénération avancée du quiz:", err);
+            const errorMessage = err.response?.data?.message ||
+                "Erreur lors de la régénération du quiz. Veuillez réessayer.";
+            setError(errorMessage);
+
+            // Fallback to simple retry if advanced regeneration fails
+            if (err.response?.status === 404) {
+                console.log("Advanced regeneration endpoint not found, falling back to simple retry");
+                handleRetryQuiz();
+            }
+        }
     };
 
     const renderQuestionContent = (question) => {
@@ -539,10 +618,27 @@ const QuizPage = () => {
     const renderResultsContent = () => {
         if (!result || !questionsWithAnswers.length) return <div className="loading">Chargement des résultats...</div>;
 
+        // Séparer les questions correctes et incorrectes
+        const correctQuestions = questionsWithAnswers.filter((question) => {
+            const isCorrect = checkAnswerCorrectness(question, question.userAnswer);
+            return isCorrect === true;
+        });
+
+        const incorrectQuestions = questionsWithAnswers.filter((question) => {
+            const isCorrect = checkAnswerCorrectness(question, question.userAnswer);
+            return isCorrect === false;
+        });
+
+        // Questions génératives (ni correctes ni incorrectes)
+        const generativeQuestions = questionsWithAnswers.filter((question) => {
+            const isCorrect = checkAnswerCorrectness(question, question.userAnswer);
+            return isCorrect === null;
+        });
+
         return (
             <div className="simple-results-container">
                 <div className="results-summary">
-                    <h2>Quiz Resultsz</h2>
+                    <h2>Quiz Results</h2>
                     <div className={`result-status ${result.estpasse ? 'passed' : 'failed'}`}>
                         {result.estpasse ? (
                             <>
@@ -562,11 +658,11 @@ const QuizPage = () => {
                     <div className="score-breakdown">
                         <div className="correct-answers">
                             <CheckCircle size={20} className="icon-correct" />
-                            {Math.round((result.score / 100) * questionsWithAnswers.length)}  correct answers
+                            {correctQuestions.length} correct answers
                         </div>
                         <div className="incorrect-answers">
                             <XCircle size={20} className="icon-incorrect" />
-                            {questionsWithAnswers.length - Math.round((result.score / 100) * questionsWithAnswers.length)} incorrect answers
+                            {incorrectQuestions.length} incorrect answers
                         </div>
                     </div>
                 </div>
@@ -574,44 +670,103 @@ const QuizPage = () => {
                 {/* Afficher les actions selon le résultat */}
                 {result.estpasse ? renderSuccessActions() : renderFailureActions()}
 
-                <div className="questions-review">
-                    <h3>Answer Details</h3>
-                    <div className="questions-list">
-                        {questionsWithAnswers.map((question, index) => {
-                            const isCorrect = checkAnswerCorrectness(question, question.userAnswer);
+                {/* Questions Incorrectes - Avec explication et réponse correcte */}
+                {incorrectQuestions.length > 0 && (
+                    <div className="questions-review incorrect-section">
+                        <h3>❌  Incorrect Questions - To Review</h3>
+                        <div className="questions-list">
+                            {incorrectQuestions.map((question) => {
+                                const originalIndex = questionsWithAnswers.findIndex(q => q.id === question.id);
 
-                            return (
-                                <div key={question.id} className={`question-result ${isCorrect ? 'correct' : 'incorrect'}`}>
-                                    <div className="question-header">
-                                        <span className="question-number">Question {index + 1}</span>
-                                        {isCorrect ? (
-                                            <CheckCircle size={20} className="icon-correct" />
-                                        ) : (
+                                return (
+                                    <div key={question.id} className="question-result incorrect">
+                                        <div className="question-header">
+                                            <span className="question-number">Question {originalIndex + 1}</span>
                                             <XCircle size={20} className="icon-incorrect" />
+                                        </div>
+                                        <div className="question-text">{question.texte}</div>
+                                        <div className="answer-comparison">
+                                            <div className="user-answer incorrect-user-answer">
+                                                <strong>Your answer:</strong> {question.userAnswer || <em>Aucune réponse</em>}
+                                            </div>
+                                            <div className="correct-answer">
+                                                <strong>Correct answer:</strong> {question.reponsCcorrect}
+                                            </div>
+                                        </div>
+                                        {question.explanation && (
+                                            <div className="explanation">
+                                                <strong>💡 Explanation::</strong> {question.explanation}
+                                            </div>
                                         )}
                                     </div>
-                                    <div className="question-text">{question.texte}</div>
-                                    <div className="answer-comparison">
-                                        <div className="user-answer">
-                                            <strong>Your answer:</strong> {question.userAnswer || <em>Aucune réponse</em>}
+                                );
+                            })}
+                        </div>
+                    </div>
+                )}
+
+                {/* Questions Correctes - Seulement question et réponse utilisateur */}
+                {correctQuestions.length > 0 && (
+                    <div className="questions-review correct-section">
+                        <h3>✅ Correct Questions</h3>
+                        <div className="questions-list">
+                            {correctQuestions.map((question) => {
+                                const originalIndex = questionsWithAnswers.findIndex(q => q.id === question.id);
+
+                                return (
+                                    <div key={question.id} className="question-result correct">
+                                        <div className="question-header">
+                                            <span className="question-number">Question {originalIndex + 1}</span>
+                                            <CheckCircle size={20} className="icon-correct" />
                                         </div>
-                                        <div className="correct-answer">
-                                            <strong>Correct answer:</strong> {question.reponsCcorrect}
+                                        <div className="question-text">{question.texte}</div>
+                                        <div className="answer-display">
+                                            <div className="user-answer correct-user-answer">
+                                                <strong>Your answer:</strong> {question.userAnswer}
+                                            </div>
                                         </div>
                                     </div>
-                                    {question.explanation && (
-                                        <div className="explanation">
-                                            <strong>Explanation:</strong> {question.explanation}
-                                        </div>
-                                    )}
-                                </div>
-                            );
-                        })}
+                                );
+                            })}
+                        </div>
                     </div>
-                </div>
+                )}
+
+                {/* Questions Génératives - Affichage spécial */}
+                {generativeQuestions.length > 0 && (
+                    <div className="questions-review generative-section">
+                        <h3>📝 Questions Génératives</h3>
+                        <div className="questions-list">
+                            {generativeQuestions.map((question) => {
+                                const originalIndex = questionsWithAnswers.findIndex(q => q.id === question.id);
+
+                                return (
+                                    <div key={question.id} className="question-result generative">
+                                        <div className="question-header">
+                                            <span className="question-number">Question  {originalIndex + 1}</span>
+                                            <Clock size={20} className="icon-generative" />
+                                        </div>
+                                        <div className="question-text">{question.texte}</div>
+                                        <div className="answer-display">
+                                            <div className="user-answer">
+                                                <strong>Your answer:</strong> {question.userAnswer || <em>Aucune réponse</em>}
+                                            </div>
+                                        </div>
+                                        {question.explanation && (
+                                            <div className="explanation">
+                                                <strong>💡 Référence:</strong> {question.explanation}
+                                            </div>
+                                        )}
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </div>
+                )}
             </div>
         );
     };
+
 
     if (loading) return <div className="loading">Loading quiz...</div>;
     if (error) return <div className="error">{error}</div>;

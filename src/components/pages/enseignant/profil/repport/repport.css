@@ -1,0 +1,132 @@
+/* src/admin/repports/Reports.css */
+
+/* Base Styles */
+.report-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.report-container h2 {
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+/* Form Styles */
+.report-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: #34495e;
+    font-size: 1rem;
+}
+
+.form-control {
+    padding: 0.8rem 1rem;
+    border: 1px solid #dfe6e9;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+textarea.form-control {
+    min-height: 200px;
+    resize: vertical;
+}
+
+/* Button Styles */
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.btn {
+    padding: 0.7rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.btn-primary {
+    background-color: #3498db;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #2980b9;
+}
+
+.btn-primary:disabled {
+    background-color: #bdc3c7;
+    cursor: not-allowed;
+}
+
+.btn-secondary {
+    background-color: #f1f2f6;
+    color: #2c3e50;
+}
+
+.btn-secondary:hover {
+    background-color: #dfe6e9;
+}
+
+/* Message Styles */
+.error-message {
+    padding: 1rem;
+    background-color: #ffecec;
+    color: #e74c3c;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    border-left: 4px solid #e74c3c;
+}
+
+.success-message {
+    padding: 1rem;
+    background-color: #e8f8f0;
+    color: #27ae60;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    border-left: 4px solid #27ae60;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .report-container {
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+
+    .form-actions {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}

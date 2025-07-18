@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Configuration d'Axios
-const API_URL = 'http://192.168.11.113:8080/api';
+const API_URL = 'http://localhost:8080/api';
 
 // Service pour les opérations liées aux catégories
 const CategoryService = {

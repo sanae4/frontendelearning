@@ -159,7 +159,7 @@ const RegisterForm = () => {
 
         try {
             const response = await axios.post(
-                `http://192.168.11.113:8080/api/users/send-verification-code?email=${formData.email}`,
+                `http://localhost:8080/api/users/send-verification-code?email=${formData.email}`,
                 {},
                 {
                     headers: {
@@ -201,7 +201,7 @@ const RegisterForm = () => {
         }
 
         try {
-            const url = `http://192.168.11.113:8080/api/users/register`;
+            const url = `http://localhost:8080/api/users/register`;
 
             const response = await axios.post(url, formData, {
                 params: {

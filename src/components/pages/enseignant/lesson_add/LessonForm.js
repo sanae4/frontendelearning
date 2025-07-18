@@ -3,7 +3,7 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import './LessonForm.css';
 
-const API_URL = 'http://192.168.11.113:8080/api';
+const API_URL = 'http://localhost:8080/api';
 
 // Create axios instance with authentication
 const api = axios.create({

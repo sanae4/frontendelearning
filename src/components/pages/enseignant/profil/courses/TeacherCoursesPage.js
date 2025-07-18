@@ -8,7 +8,7 @@ import StatusFilter from './StatusFilter';
 import EmptyState from './EmptyState';
 import EditProfileModal from './EditProfileModal';
 
-const API_BASE_URL = 'http://192.168.11.113:8080/api';
+const API_BASE_URL = 'http://192.168.11.132:8080/api';
 
 const TeacherCoursesPage = () => {
     // Récupérer l'ID depuis l'URL

@@ -48,7 +48,7 @@ const QuizCreator = () => {
     const [quizConfig, setQuizConfig] = useState({
         nombreQuestions: 5,
         typesQuestions: [],
-        niveauDifficulte: 'medium'
+        niveauDifficulte: 'hard'
     });
 
     // Fetch entity info and quiz configuration
@@ -120,7 +120,7 @@ const QuizCreator = () => {
                 setQuizConfig({
                     nombreQuestions: configResponse.data.nombreQuestions || 5,
                     typesQuestions: configResponse.data.typesQuestions ? configResponse.data.typesQuestions.split(',') : [],
-                    niveauDifficulte: configResponse.data.niveauDifficulte || 'medium'
+                    niveauDifficulte: configResponse.data.niveauDifficulte || 'hard'
                 });
 
                 // Mise à jour des autoQuizTypes basé sur la configuration existante
@@ -428,7 +428,7 @@ const QuizCreator = () => {
                         </div>
                         {/* Options supplémentaires */}
                         <div className="form-group">
-                            <label>Nombre de questions</label>
+                            <label>Number of Questions</label>
                             <input
                                 type="number"
                                 className="form-control"
@@ -438,27 +438,16 @@ const QuizCreator = () => {
                                 max="20"
                             />
                         </div>
-                        <div className="form-group">
-                            <label>Niveau de difficulté</label>
-                            <select
-                                className="form-control"
-                                value={quizConfig.niveauDifficulte}
-                                onChange={(e) => setQuizConfig({ ...quizConfig, niveauDifficulte: e.target.value })}
-                            >
-                                <option value="easy">Facile</option>
-                                <option value="medium">Moyen</option>
-                                <option value="hard">Difficile</option>
-                            </select>
-                        </div>
+
                     </div>
                     <div className="modal-footer">
-                        <button className="cancel-btn" onClick={cancelAutoQuizModal}>Annuler</button>
+                        <button className="cancel-btn" onClick={cancelAutoQuizModal}>Cancel</button>
                         <button
                             className="generate-btn"
                             onClick={proceedWithAutoGeneration}
                             disabled={isLoading || autoQuizTypes.length === 0}
                         >
-                            {isLoading ? 'Génération...' : 'Générer Quiz'}
+                            {isLoading ? 'Saving...' : '"Save Settings'}
                         </button>
                     </div>
                 </div>

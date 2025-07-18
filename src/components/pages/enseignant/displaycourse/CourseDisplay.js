@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import './CourseDisplay.css';
 
 // Base URL for API calls
-const API_BASE_URL = 'http://192.168.11.113:8080/api';
+const API_BASE_URL = 'http://localhost:8080/api';
 
 function CourseDisplay() {
     // State variables
@@ -173,35 +173,36 @@ const CourseHeader = ({ course }) => {
                     </div>
                 </div>
 
-                {/* Bouton publish - affiché seulement si DRAFT */}
-                {course.statusCours === "DRAFT" && (
-                    <div className="course-actions">
-                        <button
-                            className="btn btn-success btn-publish"
-                            onClick={handlePublishCourse}
-                            disabled={isPublishing}
-                        >
 
-                            {isPublishing ? (
-                                <>
-                                    <i className="fas fa-spinner fa-spin btn-icon"></i>
-                                    Publication en cours...
-                                </>
-                            ) : (
-                                <>
-                                    <i className="fas fa-rocket btn-icon"></i>
-                                    Publier le cours
-                                </>
-                            )}
-                        </button>
-                    </div>
-                )}
             </div>
 
             {/* Description */}
             <div className="course-description-section">
                 <p className="course-description">{course.description}</p>
             </div>
+            {/* Bouton publish - affiché seulement si DRAFT */}
+            {course.statusCours === "DRAFT" && (
+                <div className="course-actions">
+                    <button
+                        className="btn btn-success btn-publish"
+                        onClick={handlePublishCourse}
+                        disabled={isPublishing}
+                    >
+
+                        {isPublishing ? (
+                            <>
+                                <i className="fas fa-spinner fa-spin btn-icon"></i>
+                                Publication en cours...
+                            </>
+                        ) : (
+                            <>
+                                <i className="fas fa-rocket btn-icon"></i>
+                                Publier le cours
+                            </>
+                        )}
+                    </button>
+                </div>
+            )}
         </div>
     );
 };
@@ -209,11 +210,11 @@ const CourseHeader = ({ course }) => {
 // Course info component
 const CourseInfo = ({ course }) => {
     return (
-        <div className="card mb-6">
-            <div className="card-header">
+        <div className="card11 mb-6">
+            <div className="card1-header">
                 Course Information
             </div>
-            <div className="card-body">
+            <div className="card1-body">
                 <div className="info-grid">
                     <div className="info-item">
                         <span className="info-label">Level</span>
@@ -285,9 +286,9 @@ const Lesson = ({ lesson, index }) => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <div className="card">
+        <div className="card1">
             <div
-                className="card-header lesson-accordion"
+                className="card1-header lesson-accordion"
                 onClick={() => setIsOpen(!isOpen)}
             >
                 <div className="flex items-center">
@@ -297,7 +298,7 @@ const Lesson = ({ lesson, index }) => {
                 <i className={`fas ${isOpen ? 'fa-chevron-up' : 'fa-chevron-down'}`}></i>
             </div>
             {isOpen && (
-                <div className="card-body">
+                <div className="card1-body">
                     <p className="mb-3">{lesson.description}</p>
 
                     {lesson.conseilsEnseignant && (
@@ -425,7 +426,7 @@ const QuizQuestion = ({ question, index }) => {
 // Quiz component
 const Quiz = ({ quiz }) => {
     return (
-        <div className="quiz-card">
+        <div className="quiz-card1">
             <div className="flex justify-between items-center mb-4">
                 <h3 className="text-xl font-semibold">{quiz.titre}</h3>
                 <span className="badge badge-success">{quiz.quizType}</span>

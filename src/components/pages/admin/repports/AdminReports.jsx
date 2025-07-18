@@ -21,7 +21,7 @@ const AdminReports = () => {
             let endpoint = '/api/rapports';
 
             if (filter === 'non-archives') {
-                endpoint = 'http://192.168.11.113:8080/api/rapports/non-archives';
+                endpoint = 'http://localhost:8080/api/rapports/non-archives';
             }
 
             const response = await fetch(endpoint, {
@@ -62,7 +62,7 @@ const AdminReports = () => {
 
     const handleArchive = async (id) => {
         try {
-            const response = await fetch(`http://192.168.11.113:8080/api/rapports/archiver/${id}`, {
+            const response = await fetch(`http://localhost:8080/api/rapports/archiver/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -83,7 +83,7 @@ const AdminReports = () => {
     const handleDelete = async (id) => {
         if (window.confirm('Êtes-vous sûr de vouloir supprimer ce rapport ?')) {
             try {
-                const response = await fetch(`http://192.168.11.113:8080/api/rapports/${id}`, {
+                const response = await fetch(`http://localhost:8080/api/rapports/${id}`, {
                     method: 'DELETE',
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -150,13 +150,13 @@ const AdminReports = () => {
                             </div>
 
                             <div className="report-users">
-                                <p><strong>Enseignant :</strong> {report.enseignantNom}</p>
-                                {report.etudiantNoms && report.etudiantNoms.length > 0 && (
-                                    <p>
-                                        <strong>Étudiants concernés :</strong>{' '}
-                                        {report.etudiantNoms.join(', ')}
-                                    </p>
-                                )}
+                                <p>
+                                    <strong>User :</strong>
+                                    {report.enseignantNom}
+                                    {report.etudiantNoms && report.etudiantNoms.length > 0 && (
+                                        ` ${report.etudiantNoms.join(' ')}`
+                                    )}
+                                </p>
                             </div>
 
                             <div className="report-content">
@@ -165,15 +165,14 @@ const AdminReports = () => {
 
                             <div className="report-footer">
                                 <Link to={`/reportsdetails/${report.id}`} className="btn btn-view">
-                                    Voir détails
-                                </Link>
+                                    View Details                                </Link>
 
                                 {report.estArchive === 0 && (
                                     <button
                                         onClick={() => handleArchive(report.id)}
                                         className="btn btn-archive"
                                     >
-                                        Archiver
+                                        Archive
                                     </button>
                                 )}
 
@@ -181,7 +180,7 @@ const AdminReports = () => {
                                     onClick={() => handleDelete(report.id)}
                                     className="btn btn-delete"
                                 >
-                                    Supprimer
+                                    Delete
                                 </button>
                             </div>
                         </div>

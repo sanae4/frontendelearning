@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './LessonDisplay.css';
 
-const API_URL = 'http://192.168.11.113:8080/api';
+const API_URL = 'http://localhost:8080/api';
 
 const api = axios.create({
     baseURL: API_URL

@@ -59,7 +59,7 @@ const CourseEnrollmentPage = () => {
             setError(null);
             try {
                 // Use environment variables for API base URL
-                const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://192.168.11.113:8080';
+                const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8080';
 
                 // Fetch course details, lessons, and progress concurrently
                 const [courseRes, lessonsRes, avancementRes] = await Promise.all([
@@ -137,7 +137,7 @@ const CourseEnrollmentPage = () => {
         setLoading(true); // Indicate loading state for chapters
 
         try {
-            const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://192.168.11.113:8080';
+            const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8080';
             const chaptersResponse = await axios.get(`${API_BASE_URL}/api/chapitre/byLecon/${lesson.id}`);
             const newChapters = chaptersResponse.data;
             setChapters(newChapters);
@@ -176,7 +176,7 @@ const CourseEnrollmentPage = () => {
 
         setActiveChapter(chapter);
         try {
-            const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://192.168.11.113:8080';
+            const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8080';
             // Update the last viewed chapter in the backend
             await axios.put(
                 `${API_BASE_URL}/api/avancement/${studentId}/${courseId}/dernier-chapitre`,
@@ -197,7 +197,7 @@ const CourseEnrollmentPage = () => {
         if (avancement?.chapitresCompletes?.includes(chapitreId)) return;
 
         try {
-            const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://192.168.11.113:8080';
+            const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8080';
             // Mark chapter as complete
             const updatedAvancementRes = await axios.post(
                 `${API_BASE_URL}/api/avancement/${studentId}/${courseId}/chapitre/${chapitreId}`

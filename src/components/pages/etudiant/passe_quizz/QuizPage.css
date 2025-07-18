@@ -76,8 +76,61 @@ body {
     line-height: 1.6;
 }
 
+/* Styles pour les différentes sections */
+.incorrect-section .questions-list {
+    border-left: 4px solid #ef4444;
+    padding-left: 1rem;
+    margin-bottom: 2rem;
+}
+
+.correct-section .questions-list {
+    border-left: 4px solid #22c55e;
+    padding-left: 1rem;
+    margin-bottom: 2rem;
+}
+
+.generative-section .questions-list {
+    border-left: 4px solid #3b82f6;
+    padding-left: 1rem;
+    margin-bottom: 2rem;
+}
+
+/* Styles pour les réponses utilisateur */
+.incorrect-user-answer {
+    background-color: #fef2f2;
+    border: 1px solid #fecaca;
+    padding: 0.5rem;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+}
+
+.correct-user-answer {
+    background-color: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    padding: 0.5rem;
+    border-radius: 4px;
+}
+
+.explanation {
+    background-color: #eff6ff;
+    border: 1px solid #dbeafe;
+    padding: 0.75rem;
+    border-radius: 4px;
+    margin-top: 0.5rem;
+    font-style: italic;
+}
+
+.correct-answer {
+    background-color: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    padding: 0.5rem;
+    border-radius: 4px;
+    color: #166534;
+    font-weight: 500;
+}
+
 .quiz-container {
-    max-width: 1000px;
+    max-width: 1100px;
     margin: 0 auto;
     padding: 24px;
     min-height: 100vh;
@@ -389,9 +442,10 @@ body {
 
 /* Results Container */
 .simple-results-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 24px;
+    max-width: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 16px 24px;
     background: #fff;
     border-radius: var(--border-radius);
     box-shadow: var(--shadow-md);
@@ -400,10 +454,18 @@ body {
 
 .results-summary {
     text-align: center;
-    margin-bottom: 32px;
-    padding: 24px;
+    margin-bottom: 16px;
+    padding: 12px;
     background: #f8f9fa;
     border-radius: var(--border-radius);
+}
+
+.results-summary h2 {
+
+    font-size: 20px;
+    /* Réduit de 28px à 20px */
+    margin-bottom: 8px;
+    /* Réduit de 16px à 8px */
 }
 
 .result-status {
@@ -411,9 +473,12 @@ body {
     align-items: center;
     justify-content: center;
     gap: 12px;
-    font-size: 24px;
+
     font-weight: bold;
-    margin: 16px 0;
+    font-size: 18px;
+    /* Réduit de 24px à 18px */
+    margin: 8px 0;
+
 }
 
 .result-status.passed {
@@ -433,20 +498,20 @@ body {
 }
 
 .score-display {
-    font-size: 18px;
-    margin: 16px 0;
+    font-size: 16px;
+    margin: 8px 0;
 }
 
 .score-value {
-    font-size: 32px;
+    font-size: 24px;
     font-weight: bold;
 }
 
 .score-breakdown {
     display: flex;
     justify-content: center;
-    gap: 24px;
-    margin-top: 16px;
+    gap: 12px;
+    margin-top: 8px;
 }
 
 .correct-answers,
@@ -463,6 +528,55 @@ body {
 
 .incorrect-answers {
     color: var(--error-color);
+}
+
+.success-actions {
+    margin: 12px 0;
+    /* Réduit de 16px à 12px */
+    padding: 8px;
+    /* Réduit de 12px à 8px */
+}
+
+.final-quiz-ready,
+.continue-learning {
+    margin-bottom: 12px;
+    /* Réduit de 20px à 12px */
+    padding: 12px;
+    /* Réduit de 20px à 12px */
+    border-radius: 6px;
+    /* Réduit de 8px à 6px */
+}
+
+.congratulations h3,
+.encouragement h3 {
+    font-size: 16px;
+    /* Réduit de taille par défaut */
+    margin-bottom: 6px;
+    /* Réduit de 10px à 6px */
+}
+
+.congratulations p,
+.encouragement p {
+    font-size: 14px;
+    /* Taille réduite */
+    margin-bottom: 6px;
+    /* Réduit de 8px à 6px */
+}
+
+.icon-award,
+.icon-book {
+    width: 32px;
+    /* Réduit de 48px à 32px */
+    height: 32px;
+    margin-bottom: 6px;
+    /* Réduit de 15px à 6px */
+}
+
+.final-congratulations {
+
+    text-align: center;
+    width: 100%;
+    /* or specify a width if needed */
 }
 
 /* Questions Review */
@@ -483,18 +597,30 @@ body {
 }
 
 .questions-list {
+    max-height: 100%;
+    /* Réduit de 400px à 250px */
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
-    gap: 24px;
+
+    /* Réduit de 12px à 8px */
 }
 
 .question-result {
-    padding: 20px;
-    border-radius: var(--border-radius);
-    border-left: 4px solid;
-    background: var(--card-background);
-    box-shadow: var(--shadow-sm);
+    padding: 8px 12px;
+    /* Réduit le padding */
+    margin-bottom: 4px;
 }
+
+.question-text {
+    margin-bottom: 6px;
+    /* Réduit de 8px à 6px */
+    line-height: 1.3;
+    /* Réduit de 1.4 à 1.3 */
+    font-size: 14px;
+    /* Réduit de 15px à 14px */
+}
+
 
 .question-result.correct {
     border-left-color: var(--success-color);
@@ -566,12 +692,12 @@ body {
 }
 
 .action-btn {
-    padding: 12px 24px;
+    padding: 8px 16px;
     border: none;
-    border-radius: var(--border-radius);
+    border-radius: 6px;
     background-color: var(--primary-color);
     color: white;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 600;
     cursor: pointer;
     transition: var(--transition);
@@ -581,6 +707,34 @@ body {
     background-color: var(--primary-hover);
     transform: translateY(-2px);
     box-shadow: var(--shadow-md);
+}
+
+.failure-actions {
+    margin: 12px 0;
+    /* Réduit */
+    padding: 8px;
+    /* Réduit */
+}
+
+.encouragement-failure {
+    margin-bottom: 12px;
+    /* Réduit */
+    padding: 12px;
+    /* Réduit */
+}
+
+.encouragement-failure h3 {
+    font-size: 16px;
+    /* Réduit */
+    margin-bottom: 6px;
+    /* Réduit */
+}
+
+.encouragement-failure p {
+    font-size: 14px;
+    /* Réduit */
+    margin-bottom: 6px;
+    /* Réduit */
 }
 
 /* Icons */
@@ -608,9 +762,40 @@ body {
 }
 
 @media (max-width: 768px) {
-    .quiz-container {
-        padding: 16px;
+    .simple-results-container {
+        padding: 12px 16px;
     }
+
+    .results-summary {
+        padding: 8px;
+        /* Encore plus réduit sur mobile */
+        margin-bottom: 12px;
+    }
+
+    .results-summary h2 {
+        font-size: 18px;
+        /* Plus petit sur mobile */
+    }
+
+    .score-value {
+        font-size: 20px;
+        /* Plus petit sur mobile */
+    }
+
+    .success-actions,
+    .failure-actions {
+        padding: 6px;
+        /* Très compact sur mobile */
+        margin: 8px 0;
+    }
+
+    .questions-list {
+        max-height: 200px;
+        /* Encore plus compact sur mobile */
+        gap: 6px;
+    }
+
+
 
     .quiz-header {
         padding: 24px;
@@ -750,9 +935,29 @@ body {
     cursor: pointer;
     display: flex;
     align-items: center;
+    justify-content: center;
+    /* Ajouté pour centrer le texte */
     gap: 8px;
     font-weight: bold;
     transition: all 0.3s ease;
+    margin: 0 auto;
+    /* Centre le bouton horizontalement */
+    width: fit-content;
+    /* S'adapte au contenu */
+}
+
+/* Optionnel : Pour un centrage parfait vertical et horizontal */
+.final-quiz-ready {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Centre horizontalement */
+    justify-content: center;
+    /* Centre verticalement */
+    text-align: center;
+    /* Centre le texte */
+    min-height: 300px;
+    /* Hauteur minimale pour bien voir l'effet */
 }
 
 .final-quiz-btn:hover {
@@ -786,8 +991,8 @@ body {
 .action-buttons {
     display: flex;
     justify-content: center;
-    gap: 15px;
-    margin-top: 20px;
+    gap: 8px;
+    margin-top: 8px;
 }
 
 .certificate-section {

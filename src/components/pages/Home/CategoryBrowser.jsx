@@ -20,7 +20,7 @@ const CategoryBrowser = () => {
     const loadRootCategories = async () => {
         setLoading(true);
         try {
-            const response = await axios.get('http://192.168.11.113:8080/api/category/root');
+            const response = await axios.get('http://localhost:8080/api/category/root');
             setCategories(response.data);
             setCurrentCategory(null);
             setBreadcrumbs([{ id: null, titre: 'Categories' }]);
@@ -37,11 +37,11 @@ const CategoryBrowser = () => {
     const loadSubCategories = async (categoryId, categoryTitle) => {
         setLoading(true);
         try {
-            const response = await axios.get(`http://192.168.11.113:8080/api/category/${categoryId}/subcategories`);
+            const response = await axios.get(`http://localhost:8080/api/category/${categoryId}/subcategories`);
             setCategories(response.data);
 
             // Get complete category details
-            const categoryDetailsResponse = await axios.get(`http://192.168.11.113:8080/api/category/${categoryId}`);
+            const categoryDetailsResponse = await axios.get(`http://localhost:8080/api/category/${categoryId}`);
             const categoryDetails = categoryDetailsResponse.data;
             setCurrentCategory(categoryDetails);
 
@@ -67,12 +67,12 @@ const CategoryBrowser = () => {
         setLoading(true);
         try {
             // Get complete category details
-            const categoryDetailsResponse = await axios.get(`http://192.168.11.113:8080/api/category/${categoryId}`);
+            const categoryDetailsResponse = await axios.get(`http://localhost:8080/api/category/${categoryId}`);
             const categoryDetails = categoryDetailsResponse.data;
             setCurrentCategory(categoryDetails);
 
             // Get courses for this category
-            const coursesResponse = await axios.get(`http://192.168.11.113:8080/api/course/category/${categoryId}`);
+            const coursesResponse = await axios.get(`http://localhost:8080/api/course/category/${categoryId}`);
             const approvedCourses = coursesResponse.data.filter(course =>
                 course.statusCours === "APPROVED"
             );
@@ -101,10 +101,10 @@ const CategoryBrowser = () => {
             // If a category ID is in the URL, load that category
             const fetchCategoryData = async () => {
                 try {
-                    const categoryResponse = await axios.get(`http://192.168.11.113:8080/api/category/${categoryId}`);
+                    const categoryResponse = await axios.get(`http://localhost:8080/api/category/${categoryId}`);
                     const category = categoryResponse.data;
 
-                    const subcategoriesResponse = await axios.get(`http://192.168.11.113:8080/api/category/${categoryId}/subcategories`);
+                    const subcategoriesResponse = await axios.get(`http://localhost:8080/api/category/${categoryId}/subcategories`);
                     if (subcategoriesResponse.data.length > 0) {
                         // This category has subcategories
                         loadSubCategories(categoryId, category.titre);
@@ -139,7 +139,7 @@ const CategoryBrowser = () => {
     const handleCategoryClick = async (category) => {
         setLoading(true);
         try {
-            const response = await axios.get(`http://192.168.11.113:8080/api/category/${category.id}/subcategories`);
+            const response = await axios.get(`http://localhost:8080/api/category/${category.id}/subcategories`);
             const subcategories = response.data;
 
             if (subcategories.length > 0) {

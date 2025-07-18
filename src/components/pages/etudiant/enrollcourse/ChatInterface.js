@@ -11,7 +11,7 @@ const ChatInterface = ({ courseId, lessonId, chapterId }) => {
     const [studentId, setStudentId] = useState(null);
     const [conversationStarted, setConversationStarted] = useState(false);
     const messagesEndRef = useRef(null);
-    const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://192.168.11.113:8080';
+    const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8080';
 
     // Get student ID from token on component mount
     useEffect(() => {

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify/dist/ReactToastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 import './CategoryManagement.css';
 import CategoryModal from './CategoryModal';
 
@@ -20,7 +21,7 @@ const CategoryManagement = () => {
         const fetchRootCategories = async () => {
             try {
                 setLoading(true);
-                const response = await axios.get('http://192.168.11.113:8080/api/category/root');
+                const response = await axios.get('http://localhost:8080/api/category/root');
                 setCategories(response.data);
                 setLoading(false);
             } catch (error) {
@@ -48,7 +49,7 @@ const CategoryManagement = () => {
         try {
             const token = localStorage.getItem('token');
             const response = await axios.get(
-                `http://192.168.11.113:8080/api/category/${categoryId}/subcategories`,
+                `http://localhost:8080/api/category/${categoryId}/subcategories`,
                 {
                     headers: { 'Authorization': `Bearer ${token}` }
                 }
@@ -78,7 +79,7 @@ const CategoryManagement = () => {
         try {
             const token = localStorage.getItem('token');
             const response = await axios.get(
-                `http://192.168.11.113:8080/api/category/${categoryId}/subcategories`,
+                `http://localhost:8080/api/category/${categoryId}/subcategories`,
                 {
                     headers: { 'Authorization': `Bearer ${token}` }
                 }
@@ -164,7 +165,7 @@ const CategoryManagement = () => {
 
             if (modalType === 'edit' || modalType === 'editSub') {
                 // Code pour l'édition de catégorie/sous-catégorie
-                await axios.put(`http://192.168.11.113:8080/api/category/${selectedCategory.id}`, categoryData, config);
+                await axios.put(`http://localhost:8080/api/category/${selectedCategory.id}`, categoryData, config);
                 toast.success(`${modalType === 'edit' ? 'Category' : 'Subcategory'} updated successfully`);
 
                 if (modalType === 'editSub' && selectedCategory.parentCategoryId) {
@@ -186,7 +187,7 @@ const CategoryManagement = () => {
 
                 console.log("Sending data for subcategory:", dataWithParent);
 
-                await axios.post('http://192.168.11.113:8080/api/category', dataWithParent, config);
+                await axios.post('http://localhost:8080/api/category', dataWithParent, config);
                 toast.success('Subcategory added successfully');
 
                 // Forcer le rechargement des sous-catégories du parent
@@ -203,7 +204,7 @@ const CategoryManagement = () => {
                     // Pas de parentCategoryId pour une catégorie principale
                 };
 
-                await axios.post('http://192.168.11.113:8080/api/category', mainCategoryData, config);
+                await axios.post('http://localhost:8080/api/category', mainCategoryData, config);
                 toast.success('Category added successfully');
             }
 
@@ -227,7 +228,7 @@ const CategoryManagement = () => {
             // If not a subcategory, check if there are subcategories
             if (!isSubCategory) {
                 const hasSubCategories = await axios.get(
-                    `http://192.168.11.113:8080/api/category/${category.id}/has-subcategories`,
+                    `http://localhost:8080/api/category/${category.id}/has-subcategories`,
                     {
                         headers: { 'Authorization': `Bearer ${token}` }
                     }
@@ -240,7 +241,7 @@ const CategoryManagement = () => {
             }
 
             if (window.confirm(`Are you sure you want to delete ${isSubCategory ? 'subcategory' : 'category'} "${category.titre}"?`)) {
-                await axios.delete(`http://192.168.11.113:8080/api/category/${category.id}`, {
+                await axios.delete(`http://localhost:8080/api/category/${category.id}`, {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
 

@@ -36,7 +36,7 @@ const CoursesByCategoryPage = () => {
     // Fetch category details and build breadcrumb path
     const fetchCategoryAndPath = async () => {
         try {
-            const response = await axios.get(`https://192.168.11.113:8080/api/category/${categoryId}`);
+            const response = await axios.get(`https://localhost:8080/api/category/${categoryId}`);
             setCategory(response.data);
 
             // Build breadcrumb path
@@ -57,7 +57,7 @@ const CoursesByCategoryPage = () => {
 
         try {
             // Récupérer la catégorie parente
-            const response = await axios.get(`https://192.168.11.113:8080/api/category/${currentCategory.parentCategory.id}`);
+            const response = await axios.get(`https://localhost:8080/api/category/${currentCategory.parentCategory.id}`);
             const parentCategory = response.data;
 
             // Récupérer le chemin complet jusqu'au parent
@@ -74,7 +74,7 @@ const CoursesByCategoryPage = () => {
     // Fetch approved courses for the current category
     const fetchApprovedCourses = async () => {
         try {
-            const response = await axios.get(`https://192.168.11.113:8080/api/course/category/${categoryId}`);
+            const response = await axios.get(`https://localhost:8080/api/course/category/${categoryId}`);
             const approvedCourses = response.data.filter(course =>
                 course.statusCours === "APPROVED"
             );

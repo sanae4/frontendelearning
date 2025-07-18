@@ -15,13 +15,13 @@ const ConfigQuiz = () => {
     const isLesson = location.pathname.includes('/quiz-config/lesson/');
     const entityType = isLesson ? 'lesson' : 'course';
     const apiEndpoint = isLesson
-        ? `http://192.168.11.113:8080/api/configquiz/lecons/${id}/quiz-configuration`
-        : `http://192.168.11.113:8080/api/configquiz/cours/${id}/quiz-configuration`;
+        ? `http://localhost:8080/api/configquiz/lecons/${id}/quiz-configuration`
+        : `http://localhost:8080/api/configquiz/cours/${id}/quiz-configuration`;
 
     // API endpoint to fetch the entity title
     const titleEndpoint = isLesson
-        ? `http://192.168.11.113:8080/api/lecons/${id}`
-        : `http://192.168.11.113:8080/api/cours/${id}`;
+        ? `http://localhost:8080/api/lecons/${id}`
+        : `http://localhost:8080/api/cours/${id}`;
 
     useEffect(() => {
         const fetchData = async () => {

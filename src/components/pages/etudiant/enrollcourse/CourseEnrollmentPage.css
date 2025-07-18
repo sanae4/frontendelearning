@@ -498,17 +498,28 @@ body.no-navbar {
 }
 
 .message-content {
-    max-width: 80%;
-    padding: 0.75rem;
+    max-width: 100%;
+    /* Augmenté de 80% à 90% pour plus de largeur */
+    padding: 0.75rem 1rem;
+    /* Augmenté le padding horizontal pour plus d'espace */
     border-radius: 18px;
     word-wrap: break-word;
-    line-height: 1.4;
+    line-height: 1.5;
+    /* Amélioré l'espacement des lignes */
+    font-size: 0.75rem;
+    /* Taille de police légèrement augmentée */
+    min-height: 40px;
+    /* Hauteur minimale pour plus de consistance */
 }
 
 .chat-message.user .message-content {
-    background: #007bff;
-    color: white;
-    border-bottom-right-radius: 4px;
+    background: white;
+    color: #333;
+    border: 1px solid #e1e5e9;
+    border-bottom-left-radius: 4px;
+    max-width: 95%;
+    /* Plus large pour les réponses AI qui peuvent être longues */
+    margin-right: auto;
 }
 
 .chat-message.ai .message-content {
@@ -745,64 +756,53 @@ body.no-navbar {
 }
 
 .chat-input-form {
-    padding: 15px;
-    border-top: 1px solid #eee;
+    border-top: 1px solid #e1e5e9;
+    background: white;
+    padding: 1rem;
+}
+
+.input-container {
     display: flex;
-    background-color: #f9f9f9;
-}
-
-.chat-input {
-    flex: 1;
-    padding: 12px 15px;
-
-    border: 1px solid #ddd;
-    border-radius: 20px;
-    outline: none;
-    font-size: 0.9em;
-}
-
-.chat-input:focus {
-    border-color: #1976d2;
-}
-
-.chat-send-button {
-    margin-left: 100px;
-    padding: 6px 50px;
-    background-color: #1976d2;
-    color: white;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    font-weight: 500;
-    transition: background-color 0.2s ease;
-}
-
-.chat-send-button:hover {
-    background-color: #1565c0;
-}
-
-.chat-send-button:disabled {
-    background-color: #b0bec5;
-    cursor: not-allowed;
-}
-
-.chat-error-banner {
-    padding: 10px 15px;
-    background-color: #ffebee;
-    color: #d32f2f;
-    font-size: 0.9em;
-    display: flex;
-    justify-content: space-between;
+    gap: 0.75rem;
+    /* Augmenté l'espace entre les éléments */
     align-items: center;
 }
 
-.chat-error-banner button {
-    background: none;
-    border: none;
-    color: #d32f2f;
-    cursor: pointer;
-    font-weight: bold;
+.chat-input {
+    flex: 3;
+    /* Changé de 1 à 3 pour donner plus d'espace au champ de saisie */
+    min-width: 0;
+    /* Pour éviter les problèmes de débordement */
+    border: 1px solid #e1e5e9;
+    border-radius: 20px;
+    padding: 0.75rem 1rem;
+    outline: none;
+    font-size: 0.9rem;
+    height: 40px;
+    /* Hauteur fixe pour correspondre au bouton */
 }
+
+.chat-send-button {
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    width: 80px;
+    /* Largeur fixe plus réduite */
+    height: 40px;
+    /* Même hauteur que l'input */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+    flex-shrink: 0;
+    /* Empêche le bouton de rétrécir */
+    font-size: 0.85rem;
+    /* Texte légèrement plus petit */
+    font-weight: 500;
+}
+
 
 /* États de chargement et d'erreur */
 .loading-container,

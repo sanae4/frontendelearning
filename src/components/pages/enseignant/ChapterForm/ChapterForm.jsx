@@ -3,8 +3,8 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import './ChapterForm.css';
 
-const API_URL = 'http://192.168.11.113:8080/api';
-const FLASK_API_URL = 'http://192.168.11.113:5000'; // Flask API URL
+const API_URL = 'http://192.168.11.109:8080/api';
+const FLASK_API_URL = 'http://localhost:5000'; // Flask API URL
 
 // Create axios instance with authentication
 const api = axios.create({
@@ -83,7 +83,7 @@ const ChapterForm = () => {
     const [quizConfig, setQuizConfig] = useState({
         nombreQuestions: 5,
         typesQuestions: [],
-        niveauDifficulte: 'medium'
+        niveauDifficulte: 'hard'
     });
     const [existingQuizConfig, setExistingQuizConfig] = useState(null);
 
@@ -120,7 +120,7 @@ const ChapterForm = () => {
                         setQuizConfig({
                             nombreQuestions: configResponse.data.nombreQuestions || 5,
                             typesQuestions: configResponse.data.typesQuestions ? configResponse.data.typesQuestions.split(',') : [],
-                            niveauDifficulte: configResponse.data.niveauDifficulte || 'medium'
+                            niveauDifficulte: configResponse.data.niveauDifficulte || 'hard'
                         });
 
                         // Mise à jour des autoQuizTypes basé sur la configuration existante
@@ -1049,19 +1049,7 @@ const ChapterForm = () => {
                                 />
                             </div>
 
-                            <div className="form-group">
-                                <label>Difficulty Level</label>
-                                <select
-                                    className="form-control"
-                                    name="niveauDifficulte"
-                                    value={quizConfig.niveauDifficulte}
-                                    onChange={handleQuizConfigChange}
-                                >
-                                    <option value="easy">Easy</option>
-                                    <option value="medium">Medium</option>
-                                    <option value="hard">Hard</option>
-                                </select>
-                            </div>
+
                         </div>
                     </div>
                     <div className="modal-footer">
@@ -1071,7 +1059,7 @@ const ChapterForm = () => {
                             onClick={proceedWithAutoGeneration}
                             disabled={isLoading || autoQuizTypes.length === 0}
                         >
-                            {isLoading ? 'Generating...' : 'Generate Quiz'}
+                            {isLoading ? 'Saving...' : 'Save Settings'}
                         </button>
                     </div>
                 </div>

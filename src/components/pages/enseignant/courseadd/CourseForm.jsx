@@ -4,7 +4,7 @@ import { decodeToken } from '../../../../utils/jwtUtils';
 import { useNavigate, useParams } from 'react-router-dom';
 import './courseForm.css';
 
-const API_URL = 'http://192.168.11.113:8080/api';
+const API_URL = 'http://localhost:8080/api';
 
 const CourseForm = () => {
     const navigate = useNavigate();

@@ -13,7 +13,7 @@ const AdminCourseApproval = () => {
         const fetchPublishedCourses = async () => {
             try {
                 setLoading(true);
-                const response = await axios.get('http://192.168.11.113:8080/api/course');
+                const response = await axios.get('http://localhost:8080/api/course');
                 const published = response.data.filter(course => course.statusCours === 'PUBLISHED');
                 setPublishedCourses(published);
             } catch (err) {
@@ -28,7 +28,7 @@ const AdminCourseApproval = () => {
 
     const approveCourse = async (courseId) => {
         try {
-            await axios.put(`http://192.168.11.113:8080/api/course/${courseId}/status`, {
+            await axios.put(`http://localhost:8080/api/course/${courseId}/status`, {
                 status: 'APPROVED'
             });
             setPublishedCourses(publishedCourses.filter(c => c.id !== courseId));

@@ -23,7 +23,7 @@ export default function CoursePreview() {
         const fetchCourseDetails = async () => {
             try {
                 // Fetch course details
-                const courseResponse = await fetch(`http://192.168.11.113:8080/api/course/${courseId}`);
+                const courseResponse = await fetch(`http://localhost:8080/api/course/${courseId}`);
                 if (!courseResponse.ok) {
                     throw new Error("Failed to fetch course details");
                 }
@@ -31,7 +31,7 @@ export default function CoursePreview() {
                 setCourse(courseData);
 
                 // Fetch lessons for this course
-                const lessonsResponse = await fetch(`http://192.168.11.113:8080/api/lecons/course/${courseId}`);
+                const lessonsResponse = await fetch(`http://localhost:8080/api/lecons/course/${courseId}`);
                 if (!lessonsResponse.ok) {
                     throw new Error("Failed to fetch lessons");
                 }
@@ -43,7 +43,7 @@ export default function CoursePreview() {
                 const fetchAllChapters = async () => {
                     const chaptersObj = {};
                     for (const lesson of filteredLessons) {
-                        const chaptersResponse = await fetch(`http://192.168.11.113:8080/api/chapitre/byLecon/${lesson.id}`);
+                        const chaptersResponse = await fetch(`http://localhost:8080/api/chapitre/byLecon/${lesson.id}`);
                         if (chaptersResponse.ok) {
                             const chaptersData = await chaptersResponse.json();
                             chaptersObj[lesson.id] = chaptersData;
@@ -82,7 +82,7 @@ export default function CoursePreview() {
             }
 
             // Faire une requête POST pour créer l'avancement
-            const response = await fetch(`http://192.168.11.113:8080/api/avancement/enroll`, {
+            const response = await fetch(`http://localhost:8080/api/avancement/enroll`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
